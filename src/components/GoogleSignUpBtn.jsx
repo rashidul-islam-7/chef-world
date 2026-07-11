@@ -8,7 +8,7 @@ const GoogleSignUpButton = () => {
   const [googleLoading, setGoogleLoading] = useState(false);
 
   const handleGoogleSignUp = async () => {
-    setGoogleLoading(true)
+    setGoogleLoading(true);
     setGoogleLoading(false);
   };
 

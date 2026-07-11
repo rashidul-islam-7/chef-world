@@ -7,11 +7,9 @@ export const getAllRecipe = async () => {
         revalidate: 60,
       },
     });
-
     if (!res.ok) {
       throw new Error("Failed to fetch recipes!");
     }
-
     return res.json();
   } catch (err) {
     console.error(err);

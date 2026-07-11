@@ -6,9 +6,13 @@ import { RiMenu2Fill } from "react-icons/ri";
 import { usePathname, useRouter } from "next/navigation";
 import { Avatar } from "@heroui/react";
 import ThemeButton from "./ThemeButton";
+import { useSession } from "@/lib/auth-client";
 
 const NavBar = () => {
   const pathname = usePathname();
+
+  const { data } = useSession();
+  const user = data?.user;
 
   const navLinks = [
     {
@@ -58,16 +62,18 @@ const NavBar = () => {
 
                 {
                   <li>
-                    <Link
-                      href={"/dashboard"}
-                      className={
-                        pathname.startsWith("/dashboard")
-                          ? activeClass
-                          : normalClass
-                      }
-                    >
-                      Dashboard
-                    </Link>
+                    {user && (
+                      <Link
+                        href={"/dashboard"}
+                        className={
+                          pathname.startsWith("/dashboard")
+                            ? activeClass
+                            : normalClass
+                        }
+                      >
+                        Dashboard
+                      </Link>
+                    )}
                   </li>
                 }
               </ul>
@@ -81,7 +87,7 @@ const NavBar = () => {
           >
             <span className="md:block hidden">
               {" "}
-              Cook<span className="text-orange-500">World</span>
+              Chef<span className="text-orange-500">World</span>
             </span>
             <span className="block md:hidden">
               {" "}
@@ -104,53 +110,61 @@ const NavBar = () => {
               </li>
             ))}
             <li>
-              <Link
-                href={"/dashboard"}
-                className={
-                  pathname.startsWith("/dashboard") ? activeClass : normalClass
-                }
-              >
-                Dashboard
-              </Link>
+              {user && (
+                <Link
+                  href={"/dashboard"}
+                  className={
+                    pathname.startsWith("/dashboard")
+                      ? activeClass
+                      : normalClass
+                  }
+                >
+                  Dashboard
+                </Link>
+              )}
             </li>
           </ul>
         </div>
 
         {/* Right */}
         <div className="navbar-end">
-          {/* <Link href={"/dashboard/profile"}>
-            <div className="flex items-center gap-2">
-              <p className="hidden md:block font-medium ">{user?.name || "Rashed"}</p>
-              <Avatar className="border-2 border-gray-400">
-                {user?.image ? (
-                  <Avatar>
-                    <Avatar.Image alt={user?.name} src={user?.image} />
-                  </Avatar>
-                ) : (
-                  <Avatar.Fallback>
-                    {user?.name.slice(0, 2).toUpperCase()}
-                  </Avatar.Fallback>
-                )}
-              </Avatar>
-            </div>
-          </Link> */}
-
-          <div className="flex items-center gap-3">
-            <Link
-              href="/signin"
-              className={`font-medium hidden dark:text-white md:block`}
-            >
-              Login
+          {user ? (
+            <Link href={"/dashboard/profile"}>
+              <div className="flex items-center gap-2">
+                <p className="hidden md:block font-medium dark:text-gray-100 ">
+                  {user?.name || "Rashed"}
+                </p>
+                <Avatar className="border-2 border-gray-400">
+                  {user?.image ? (
+                    <Avatar>
+                      <Avatar.Image alt={user?.name} src={user?.image} />
+                    </Avatar>
+                  ) : (
+                    <Avatar.Fallback>
+                      {user?.name.slice(0, 2).toUpperCase()}
+                    </Avatar.Fallback>
+                  )}
+                </Avatar>
+              </div>
             </Link>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link
+                href="/signin"
+                className={`font-medium hidden dark:text-white md:block`}
+              >
+                Login
+              </Link>
 
-            <Link
-              href="/signup"
-              className={`rounded-full px-5 py-1 text-white transition-all bg-orange-400 hover:bg-orange-500
+              <Link
+                href="/signup"
+                className={`rounded-full px-5 py-1 text-white transition-all bg-orange-400 hover:bg-orange-500
                 `}
-            >
-              Register
-            </Link>
-          </div>
+              >
+                Register
+              </Link>
+            </div>
+          )}
         </div>
 
         <ThemeButton />
