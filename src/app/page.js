@@ -1,6 +1,7 @@
 import FeaturedRecipes from "@/components/HomePage/FeaturedRecipes";
 import HeroSection from "@/components/HomePage/HomeHero";
 import PopularRecipes from "@/components/HomePage/PopularRecipes";
+import PremiumGiftOffer from "@/components/HomePage/PremiumGiftOffer";
 import React from "react";
 
 const HomePage = () => {
@@ -10,6 +11,7 @@ const HomePage = () => {
         <HeroSection />
         <FeaturedRecipes />
         <PopularRecipes />
+        <PremiumGiftOffer />
       </div>
     </div>
   );
