@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
   const recipe = await getRecipeDataById(id);
 
   return {
-    title: `${recipe.recipeName} | Cook World`,
+    title: `${recipe.recipeName} | Chef World`,
     description: recipe.instructions?.slice(0, 150),
   };
 }

@@ -80,7 +80,7 @@ const PopularRecipesSlide = ({ recipes }) => {
                   </div>
 
                   <Link href={`/recipes/${recipe._id}`}>
-                    <button className="cursor-pointer hover:p-1 hover:border text-orange-500 font-medium hover:text-orange-600 transition">
+                    <button className="cursor-pointer text-orange-500 font-medium hover:text-orange-700 transition">
                       View →
                     </button>
                   </Link>

@@ -2,7 +2,7 @@ export const metadata = {
   title: "All Recipe | CookWorld",
 };
 
-import BrowseRecipeClient from "@/components/RecipeDetails/BrowseRecipes";
+import BrowseRecipeClient from "@/components/BrowseRecipe/BrowseRecipeClient";
 import { getAllRecipe } from "@/lib/getData";
 
 export default async function BrowseRecipesPage() {
@@ -18,7 +18,7 @@ export default async function BrowseRecipesPage() {
             Explore Recipes
           </span>
 
-          <h1 className="my-4 text-3xl md:text-5xl font-bold">
+          <h1 className="my-4 text-3xl dark:text-gray-100 md:text-5xl font-bold">
             Browse All Recipes
           </h1>
 
