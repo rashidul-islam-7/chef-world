@@ -26,6 +26,8 @@ export const getRecipeById = async (id) => {
     if (!res.ok) {
       throw new Error("Failed to fetch recipe!");
     }
+
+    return res.json();
   } catch (err) {
     console.error(err);
   }

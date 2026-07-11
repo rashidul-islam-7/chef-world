@@ -42,7 +42,7 @@ const RecipeCard = ({ recipe }) => {
         </div>
 
         <Link
-          href={`/recipes/${recipe._id}`}
+          href={`/AllRecipe/${recipe._id}`}
           className="mt-5 flex items-center justify-center rounded-xl bg-orange-500 py-1.5 font-medium text-white transition hover:bg-orange-600"
         >
           View Details
