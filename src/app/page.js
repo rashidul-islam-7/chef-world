@@ -1,5 +1,6 @@
 import FeaturedRecipes from "@/components/HomePage/FeaturedRecipes";
 import HeroSection from "@/components/HomePage/HomeHero";
+import PopularRecipes from "@/components/HomePage/PopularRecipes";
 import React from "react";
 
 const HomePage = () => {
@@ -8,6 +9,7 @@ const HomePage = () => {
       <div className="">
         <HeroSection />
         <FeaturedRecipes />
+        <PopularRecipes />
       </div>
     </div>
   );

@@ -3,10 +3,12 @@ import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 import FeaturedRecipesCard from "./FeaturedRecipesCard";
 
-const recipesData = [];
+
+
+const recipesData = []
 
 const FeaturedRecipes = async () => {
-  const featuredRecipesData = [];
+
   const topRecipes = recipesData
     .sort((a, b) => b.likeCount - a.likeCount)
     .slice(0, 4);
@@ -34,8 +36,8 @@ const FeaturedRecipes = async () => {
         {/* Cards */}
 
         <FeaturedRecipesCard
-          featuredRecipesData={featuredRecipesData}
-          topRecipes={topRecipes}
+          featuredRecipesData={[]}
+          topRecipes={[]}
         />
 
         {/* Button */}

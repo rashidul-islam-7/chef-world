@@ -17,7 +17,7 @@ const NavBar = () => {
     },
     {
       name: "Browse Recipes",
-      href: "/recipes",
+      href: "/AllRecipe",
     },
   ];
 
@@ -136,7 +136,10 @@ const NavBar = () => {
           </Link> */}
 
           <div className="flex items-center gap-3">
-            <Link href="/signin" className={`font-medium hidden dark:text-white md:block`}>
+            <Link
+              href="/signin"
+              className={`font-medium hidden dark:text-white md:block`}
+            >
               Login
             </Link>
 
