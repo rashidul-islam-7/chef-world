@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
@@ -9,6 +10,9 @@ const GoogleSignUpButton = () => {
 
   const handleGoogleSignUp = async () => {
     setGoogleLoading(true);
+    await authClient.signIn.social({
+      provider: "google",
+    });
     setGoogleLoading(false);
   };
 
