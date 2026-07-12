@@ -30,3 +30,17 @@ export const getRecipeById = async (id) => {
     console.error(err);
   }
 };
+
+//get my-recipes with email
+export const getMyRecipes = async (email) => {
+  try {
+    const res = await fetch(`${API_URL}/my-recipes?email=${email}`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch your recipes!");
+    }
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};

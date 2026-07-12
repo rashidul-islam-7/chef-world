@@ -20,4 +20,41 @@ export const auth = betterAuth({
   database: mongodbAdapter(db, {
     client,
   }),
+
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        defaultValue: "user",
+        input: false,
+      },
+      isPremium: {
+        type: "boolean",
+        defaultValue: false,
+        input: false,
+      },
+      isBlocked: {
+        type: "boolean",
+        defaultValue: false,
+        input: false,
+      },
+    },
+  },
+
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user) => {
+          return {
+            data: {
+              ...user,
+              role: "user",
+              isPremium: false,
+              isBlocked: false,
+            },
+          };
+        },
+      },
+    },
+  },
 });
