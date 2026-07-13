@@ -142,12 +142,12 @@ const Sidebar = () => {
       </aside>
 
       {/* Mobile Drawer */}
-      <div className="absolute inline  right-4 top-20 z-50">
+      <div className="absolute inline lg:hidden right-4 top-20 z-50">
         <Drawer>
           <Button
             isIconOnly
             variant="light"
-            className="p-2 text-gray-700 dark:text-gray-300"
+            className="p-2 text-2xl text-gray-700 dark:text-gray-300"
           >
             <PanelLeftClose size={24} />
           </Button>

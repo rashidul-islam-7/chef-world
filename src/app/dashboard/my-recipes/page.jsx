@@ -2,7 +2,7 @@ export const metadata = {
   title: "My Recipe | ChefWorld",
 };
 
-// import MyRecipesTable from "@/components/DashboardPage/MyRecipes/MyRecipesTable";
+import MyRecipesTable from "@/components/MyRecipes/MyRecipesTable";
 import { auth } from "@/lib/auth";
 
 import { getMyRecipes } from "@/lib/getData";
@@ -25,7 +25,7 @@ const MyRecipesPage = async () => {
 
   return (
     <section className="">
-      {/* <MyRecipesTable recipes={myRecipeData} /> */}
+      <MyRecipesTable recipes={myRecipeData} />
     </section>
   );
 };
