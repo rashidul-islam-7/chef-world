@@ -21,8 +21,6 @@ const MyRecipesPage = async () => {
 
   const myRecipeData = await getMyRecipes(userEmail);
 
-  console.log(myRecipeData);
-
   return (
     <section className="">
       <MyRecipesTable recipes={myRecipeData} />

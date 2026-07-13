@@ -28,6 +28,7 @@ export const getRecipeById = async (id) => {
     return res.json();
   } catch (err) {
     console.error(err);
+    return null;
   }
 };
 
@@ -42,5 +43,21 @@ export const getMyRecipes = async (email) => {
   } catch (error) {
     console.error(error);
     return [];
+  }
+};
+
+// delete my-recipes with id
+export const deleteMyRecipe = async (id, email) => {
+  try {
+    const res = await fetch(`${API_URL}/delete-my-recipe/${id}?email=${email}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) {
+      throw new Error("Could not delete the recipe!");
+    }
+    return res.json();
+  } catch (err) {
+    console.error(err);
+    return { success: false, message: err.message };
   }
 };
