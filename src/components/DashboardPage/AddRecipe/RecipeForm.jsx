@@ -1,6 +1,6 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { postRecipe } from "@/lib/postData";
+import { postRecipe, updateRecipe } from "@/lib/postData";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -17,7 +17,6 @@ const RecipeForm = ({ recipe }) => {
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  const email = session?.user.email;
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -87,7 +86,7 @@ const RecipeForm = ({ recipe }) => {
 
       // update recipe
       if (isUpdate) {
-        const data = await updateRecipe(recipe._id, recipeData);
+        const data = await updateRecipe(recipeData, recipe._id);
 
         if (data.modifiedCount > 0) {
           toast.success("Recipe updated successfully!");
