@@ -4,9 +4,8 @@ import { FaBookOpen, FaHeart, FaThumbsUp, FaCrown } from "react-icons/fa";
 import OverviewStatsCard from "./OverviewStatsCard";
 import { useState } from "react";
 
-export default function DashboardOverview() {
+export default function DashboardOverview({ user_isPremium }) {
   const [favorites, setFavorites] = useState([]);
-  const user_isPremium = false;
 
   const stats = {
     totalRecipes: 0,
