@@ -3,6 +3,7 @@
 import { FaBookOpen, FaHeart, FaThumbsUp, FaCrown } from "react-icons/fa";
 import OverviewStatsCard from "./OverviewStatsCard";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function DashboardOverview({ user_isPremium }) {
   const [favorites, setFavorites] = useState([]);
@@ -67,13 +68,29 @@ export default function DashboardOverview({ user_isPremium }) {
             </p>
           </div>
 
-          <span
+          {user_isPremium && (
+            <span className="bg-white text-orange-600 px-5 py-2 rounded-full font-semibold">
+              Premium Active
+            </span>
+          )}
+          {!user_isPremium && (
+            <form action={"/api/subscription"} method="POST">
+              <button
+                type="submit"
+                className=" bg-black/20 px-5 py-2 rounded-full font-semibold"
+              >
+                Free User
+              </button>
+            </form>
+          )}
+
+          {/* <span
             className={`px-5 py-2 rounded-full font-semibold ${
               user_isPremium ? "bg-white text-orange-600" : "bg-black/20"
             }`}
           >
             {user_isPremium ? "Premium Active" : "Free User"}
-          </span>
+          </span> */}
         </div>
       </div>
 
