@@ -1,9 +1,8 @@
-
-
 import { redirect } from "next/navigation";
 import { stripe } from "@/lib/stripe";
 import { FaCheckCircle } from "react-icons/fa";
-import { getSubscription } from "@/lib/postData";
+import Link from "next/link";
+import { postSubscription } from "@/lib/postData";
 
 export default async function Success({ searchParams }) {
   const params = await searchParams;
@@ -14,7 +13,6 @@ export default async function Success({ searchParams }) {
   }
 
   try {
-    
     const session = await stripe.checkout.sessions.retrieve(sessionId, {
       expand: ["payment_intent"],
     });
@@ -27,16 +25,15 @@ export default async function Success({ searchParams }) {
     }
 
     if (status === "complete") {
-
       const payload = {
         userId: metadata?.userId,
         userEmail: metadata?.userEmail,
-        transactionId: session?.payment_intent?.id || session.id,
-        amount: session?.amount_total / 100, 
-        paymentStatus: session?.payment_status, 
+        transactionId: session?.payment_intent?.id || session.id, 
+        amount: (session?.amount_total / 100), 
+        paymentStatus: session?.payment_status,
       };
 
-      await getSubscription(payload);
+      await postSubscription(payload);
 
       return (
         <section className="min-h-screen flex items-center justify-center p-4">
@@ -77,9 +74,9 @@ export default async function Success({ searchParams }) {
             We couldn't verify this payment session. Please check your stripe
             dashboard.
           </p>
-          <a href="/" className="text-orange-600 font-semibold hover:underline">
+          <Link href="/" className="text-orange-600 font-semibold hover:underline">
             Return Home
-          </a>
+          </Link>
         </div>
       </section>
     );

@@ -20,7 +20,6 @@ export const postRecipe = async (recipeData) => {
       throw new Error(data.message);
     }
     return data;
-    
   } catch (err) {
     console.error("Error:", err);
     throw err;
@@ -49,8 +48,7 @@ export const updateRecipe = async (updateRecipeData, id) => {
   }
 };
 
-
-export const getSubscription = async (data) => {
+export const postSubscription = async (data) => {
   const res = await fetch(`${API_URL}/premium-user-subscription`, {
     method: "POST",
     headers: {
@@ -61,6 +59,24 @@ export const getSubscription = async (data) => {
 
   if (!res.ok) {
     throw new Error("Failed to get subscription");
+  }
+
+  return res.json();
+};
+
+export const postPurchasedRecipe = async (data) => {
+  const res = await fetch(`${API_URL}/purchase-recipe-payment`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  console.log(res)
+  console.log(res.status)
+
+  if (!res.ok) {
+    throw new Error("Failed to save purchased recipe");
   }
 
   return res.json();

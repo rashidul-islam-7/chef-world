@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const getAllRecipe = async () => {
   try {
@@ -19,12 +19,12 @@ export const getAllRecipe = async () => {
 
 // get data with by id
 export const getRecipeById = async (id) => {
+  // console.log(id);
   try {
     const res = await fetch(`${API_URL}/recipe/${id}`);
     if (!res.ok) {
       throw new Error("Failed to fetch recipe!");
     }
-
     return res.json();
   } catch (err) {
     console.error(err);
@@ -49,7 +49,7 @@ export const getMyRecipes = async (email) => {
 // delete my-recipes with id
 export const deleteMyRecipe = async (id, email) => {
   try {
-    const res = await fetch(`${API_URL}/delete-my-recipe/${id}?email=${email}`, {
+    const res = await fetch(`${API_URL}/delete-my-recipe/${id}`, {
       method: "DELETE",
     });
     if (!res.ok) {
