@@ -124,7 +124,7 @@ const ProfilePage = () => {
 
       {/* Premium Section */}
       {!isPremium && (
-        <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-orange-500 to-red-500 p-8 text-white">
+        <div className="overflow-hidden rounded-3xl bg-linear-to-r from-orange-500 to-red-500 p-8 text-white">
           <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
             <div>
               <div className="flex items-center gap-3">

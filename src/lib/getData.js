@@ -1,3 +1,6 @@
+import { json } from "better-auth";
+import { data } from "motion/react-client";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const getAllRecipe = async () => {
@@ -19,7 +22,6 @@ export const getAllRecipe = async () => {
 
 // get data with by id
 export const getRecipeById = async (id) => {
-  // console.log(id);
   try {
     const res = await fetch(`${API_URL}/recipe/${id}`);
     if (!res.ok) {
@@ -59,5 +61,23 @@ export const deleteMyRecipe = async (id, email) => {
   } catch (err) {
     console.error(err);
     return { success: false, message: err.message };
+  }
+};
+
+//get my purchased recipes
+export const getMyPurchasedRecipes = async (userId) => {
+  try {
+    const res = await fetch(`${API_URL}/my-purchased-recipes/${userId}`);
+
+    console.log("fetch", res);
+    console.log("fetch", (await res).status);
+    if (!res.ok) {
+      throw new Error("Failed to fetch purchased recipes");
+    }
+    const data = res.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+    return [];
   }
 };

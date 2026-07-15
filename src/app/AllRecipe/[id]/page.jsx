@@ -4,7 +4,7 @@ import { getRecipeById } from "@/lib/getData";
 // Dynamic Metadata
 export async function generateMetadata({ params }) {
   const { id } = await params;
-
+  console.log(id);
   const recipe = await getRecipeById(id);
 
   return {

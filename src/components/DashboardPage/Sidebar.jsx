@@ -28,7 +28,7 @@ const userMenuItems = [
   { name: "My Favorites", href: "/dashboard/favorites", icon: FaHeart },
   {
     name: "My Purchased Recipes",
-    href: "/dashboard/purchased-recipes",
+    href: "/dashboard/my-purchased-recipes",
     icon: FaCartPlus,
   },
   { name: "Profile", href: "/dashboard/profile", icon: FaUser },
