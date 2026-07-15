@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LikeButton from "./LikeButton";
 import FavoriteButton from "./FavoriteButton";
+import { useSession } from "@/lib/auth-client";
 
 const RecipeCard = ({ recipe }) => {
   return (
