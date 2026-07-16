@@ -7,12 +7,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { Avatar } from "@heroui/react";
 import ThemeButton from "./ThemeButton";
 import { useSession } from "@/lib/auth-client";
+import { useSessionContext } from "./Provider/SessionProvider";
 
 const NavBar = () => {
   const pathname = usePathname();
 
-  const { data } = useSession();
-  const user = data?.user;
+  const session = useSessionContext();
+  const user = session?.user;
 
   const navLinks = [
     {

@@ -1,5 +1,3 @@
-
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const getAllRecipe = async () => {
@@ -78,5 +76,25 @@ export const getMyPurchasedRecipes = async (userId) => {
   } catch (err) {
     console.error(err);
     return [];
+  }
+};
+
+export const getUserDashboardStats = async (userId) => {
+  try {
+    const res = await fetch(`${API_URL}/user-stats/${userId}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch dashboard stats");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error in getUserDashboardStats:", error);
+    return {
+      success: false,
+      stats: { totalRecipes: 0, totalLikes: 0, totalFavorites: 0 },
+    };
   }
 };

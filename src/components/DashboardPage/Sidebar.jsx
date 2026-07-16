@@ -25,7 +25,11 @@ const userMenuItems = [
   { name: "Overview", href: "/dashboard", icon: FaHome },
   { name: "My Recipes", href: "/dashboard/my-recipes", icon: FaBook },
   { name: "Add Recipe", href: "/dashboard/add-recipe", icon: FaPlusCircle },
-  { name: "My Favorites", href: "/dashboard/my-favorites-recipes", icon: FaHeart },
+  {
+    name: "My Favorites",
+    href: "/dashboard/my-favorites-recipes",
+    icon: FaHeart,
+  },
   {
     name: "My Purchased Recipes",
     href: "/dashboard/my-purchased-recipes",

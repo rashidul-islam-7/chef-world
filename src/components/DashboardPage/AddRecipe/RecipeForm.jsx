@@ -1,4 +1,5 @@
 "use client";
+import { useSessionContext } from "@/components/Provider/SessionProvider";
 import { authClient } from "@/lib/auth-client";
 import { postRecipe, updateRecipe } from "@/lib/postData";
 import { useRouter } from "next/navigation";
@@ -15,7 +16,7 @@ const RecipeForm = ({ recipe }) => {
 
   const router = useRouter();
 
-  const { data: session } = authClient.useSession();
+  const session = useSessionContext();
   const user = session?.user;
 
   const handleImage = (e) => {

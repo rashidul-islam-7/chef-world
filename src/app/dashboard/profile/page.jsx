@@ -1,5 +1,6 @@
 "use client";
 
+import { useSessionContext } from "@/components/Provider/SessionProvider";
 import { authClient } from "@/lib/auth-client";
 import { useState, useEffect } from "react";
 import { FaCrown, FaCheckCircle, FaCamera, FaChessQueen } from "react-icons/fa";
@@ -9,9 +10,8 @@ const ProfilePage = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
 
-  const { data: session } = authClient.useSession();
-  const user = session?.user;
-  const isPremium = user?.isPremium;
+  const session = useSessionContext();
+  const isPremium = session?.user?.isPremium;
 
   useEffect(() => {
     if (user) {
