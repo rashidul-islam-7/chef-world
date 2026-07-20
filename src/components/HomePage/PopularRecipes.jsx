@@ -7,7 +7,7 @@ const PopularRecipes = async () => {
   console.log(recipesData)
 
   const topRecipes = recipesData
-    .sort((a, b) => b.likeCount - a.likeCount)
+    .sort((a, b) => b.likesCount - a.likesCount)
     .slice(0, 8);
 
   return (

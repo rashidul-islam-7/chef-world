@@ -279,7 +279,7 @@ const RecipeForm = ({ recipe }) => {
         <button
           disabled={loading}
           type="submit"
-          className="mt-5 w-full rounded-xl bg-orange-500 py-3 font-semibold text-white transition hover:bg-orange-600 disabled:opacity-60"
+          className="cursor-pointer mt-5 w-full rounded-xl bg-orange-500 py-3 font-semibold text-white transition hover:bg-orange-600 disabled:opacity-60"
         >
           {loading
             ? isUpdate

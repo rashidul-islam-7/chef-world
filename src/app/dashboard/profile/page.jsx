@@ -12,6 +12,7 @@ const ProfilePage = () => {
 
   const session = useSessionContext();
   const isPremium = session?.user?.isPremium;
+  const user = session?.user;
 
   useEffect(() => {
     if (user) {

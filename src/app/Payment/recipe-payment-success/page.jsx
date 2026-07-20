@@ -45,7 +45,7 @@ export default async function PaymentSuccess({ searchParams }) {
             We couldn't verify this payment session. Please check your stripe
             dashboard.
           </p>
-          <Link href="/" className="text-orange-600 font-semibold">
+          <Link href="/dashboard/my-purchased-recipes" className="text-orange-600 font-semibold">
             Return Home
           </Link>
         </div>
@@ -54,7 +54,7 @@ export default async function PaymentSuccess({ searchParams }) {
   }
 
   if (status === "open") {
-    redirect("/");
+    redirect("/dashboard/my-purchased-recipes");
   }
 
   if (status === "complete") {
@@ -103,8 +103,8 @@ export default async function PaymentSuccess({ searchParams }) {
           {/* Navigation Buttons */}
           <div className="space-y-3">
             <div className="pt-2">
-              <Link href="/" className="text-sm text-green-500 hover:underline">
-                Back to Home
+              <Link href="/dashboard/my-purchased-recipes" className="text-sm text-green-500 hover:underline">
+                Back Purchased Recipes
               </Link>
             </div>
           </div>

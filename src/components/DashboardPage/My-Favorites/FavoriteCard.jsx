@@ -24,11 +24,11 @@ export default function FavoriteCard({ recipe, userId, onRemove }) {
           {recipe.category}
         </span>
 
-        {/* action btn */}
+        {/* action remove btn */}
         <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
           <button
             onClick={() => onRemove(recipe._id)}
-            className="bg-red-50 dark:bg-zinc-800/95 text-red-500 hover:bg-red-500 hover:text-white p-2 rounded-full shadow-md transition-all duration-200 border border-red-100 dark:border-zinc-700"
+            className="cursor-pointer bg-red-50 dark:bg-zinc-800/95 text-red-500 hover:bg-red-500 hover:text-white p-2 rounded-full shadow-md transition-all duration-200 border border-red-100 dark:border-zinc-700"
             title="Remove from favorites"
           >
             <Trash2 size={16} />

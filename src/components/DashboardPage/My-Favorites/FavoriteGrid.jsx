@@ -35,7 +35,7 @@ const  FavoriteGrid = ({ initialFavorites, userId })=> {
           No favorite recipes found yet.
         </p>
         <Link
-          href="/recipes"
+          href="/AllRecipe"
           className="mt-4 inline-block bg-red-500 text-white px-6 py-2.5 rounded-full font-medium hover:bg-red-600 transition duration-200 shadow-md text-sm"
         >
           Explore Recipes

@@ -177,7 +177,7 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="border-t border-t-gray-700 mt-12 pt-6 text-center">
           <p className="text-sm text-gray-300 ">
-            © {currentYear} CookWorld. All rights reserved.
+            © {currentYear} ChefWorld. All rights reserved.
           </p>
 
           <p className="text-sm text-gray-300 mt-1">
