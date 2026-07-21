@@ -98,3 +98,38 @@ export const getUserDashboardStats = async (userId) => {
     };
   }
 };
+
+export const getAdminDashboardStats = async () => {
+  try {
+    const res = await fetch(`${API_URL}/admin/dashboard`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch admin dashboard stats!");
+    }
+
+    return await res.json();
+  } catch (err) {
+    console.error(err);
+    return {
+      totalUsers: 0,
+      totalRecipes: 0,
+      totalPremiumMembers: 0,
+      totalReports: 0,
+    };
+  }
+};
+
+export const getAdminUsers = async () => {
+  try {
+    const res = await fetch(`${API_URL}/admin/users`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch admin users list!");
+    }
+
+    return await res.json();
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};

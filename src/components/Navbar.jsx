@@ -3,43 +3,34 @@
 import Link from "next/link";
 import React from "react";
 import { RiMenu2Fill } from "react-icons/ri";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Avatar } from "@heroui/react";
 import ThemeButton from "./ThemeButton";
-import { useSession } from "@/lib/auth-client";
 import { useSessionContext } from "./Provider/SessionProvider";
 
 const NavBar = () => {
   const pathname = usePathname();
-
   const session = useSessionContext();
   const user = session?.user;
 
   const navLinks = [
-    {
-      name: "Home",
-      href: "/",
-    },
-    {
-      name: "Browse Recipes",
-      href: "/AllRecipe",
-    },
+    { name: "Home", href: "/" },
+    { name: "Browse Recipes", href: "/AllRecipe" },
   ];
 
   const activeClass =
     "border-b-2 border-orange-300 pb-0.5 dark:text-white hover:text-orange-300 font-medium";
-
   const normalClass =
     "text-base hover:text-orange-300 dark:text-white transition-colors duration-200";
 
   return (
     <div className="relative">
-      <div className="navbar bg-gray-100 dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0 w-full z-50 ">
-        {/* Left */}
+      <div className="navbar bg-gray-100 dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0 w-full z-50">
+        {/* Left Section */}
         <div className="navbar-start">
-          {/* Mobile Menu */}
+          {/* Mobile Menu Dropdown */}
           <div className="dropdown">
-            <div tabIndex={0} role="button" className=" p-2 mr-2 lg:hidden">
+            <div tabIndex={0} role="button" className="p-2 mr-2 lg:hidden">
               <RiMenu2Fill size={22} />
             </div>
 
@@ -61,43 +52,40 @@ const NavBar = () => {
                   </li>
                 ))}
 
-                {
+                {/* Dashboard Link for Mobile */}
+                {user && (
                   <li>
-                    {user && (
-                      <Link
-                        href={"/dashboard"}
-                        className={
-                          pathname.startsWith("/dashboard")
-                            ? activeClass
-                            : normalClass
-                        }
-                      >
-                        Dashboard
-                      </Link>
-                    )}
+                    <Link
+                      href="/dashboard"
+                      className={
+                        pathname.startsWith("/dashboard")
+                          ? activeClass
+                          : normalClass
+                      }
+                    >
+                      Dashboard
+                    </Link>
                   </li>
-                }
+                )}
               </ul>
             </div>
           </div>
 
           {/* Logo */}
           <Link
-            href={"/"}
-            className="text-2xl lg:text-3xl dark:text-white font-extrabold -ml-2 "
+            href="/"
+            className="text-2xl lg:text-3xl dark:text-white font-extrabold -ml-2"
           >
             <span className="md:block hidden">
-              {" "}
               Chef<span className="text-orange-500">World</span>
             </span>
             <span className="block md:hidden">
-              {" "}
               C<span className="text-orange-500">W</span>
             </span>
           </Link>
         </div>
 
-        {/* Center */}
+        {/* Center Section (Desktop Menu) */}
         <div className="navbar-center hidden lg:flex">
           <ul className="flex items-center gap-8">
             {navLinks.map((link) => (
@@ -110,10 +98,12 @@ const NavBar = () => {
                 </Link>
               </li>
             ))}
-            <li>
-              {user && (
+
+            {/* Dashboard Link for Desktop */}
+            {user && (
+              <li>
                 <Link
-                  href={"/dashboard"}
+                  href="/dashboard"
                   className={
                     pathname.startsWith("/dashboard")
                       ? activeClass
@@ -122,53 +112,46 @@ const NavBar = () => {
                 >
                   Dashboard
                 </Link>
-              )}
-            </li>
+              </li>
+            )}
           </ul>
         </div>
 
-        {/* Right */}
-        <div className="navbar-end">
+        {/* Right Section */}
+        <div className="navbar-end gap-3">
           {user ? (
-            <Link href={"/dashboard/profile"}>
+            <Link href="/dashboard/profile">
               <div className="flex items-center gap-2">
-                <p className="hidden md:block font-medium dark:text-gray-100 ">
-                  {user?.name || "Rashed"}
+                <p className="hidden md:block font-medium dark:text-gray-100">
+                  {user?.name || "User"}
                 </p>
-                <Avatar className="border-2 border-gray-400">
-                  {user?.image ? (
-                    <Avatar>
-                      <Avatar.Image alt={user?.name} src={user?.image} />
-                    </Avatar>
-                  ) : (
-                    <Avatar.Fallback>
-                      {user?.name.slice(0, 2).toUpperCase()}
-                    </Avatar.Fallback>
-                  )}
-                </Avatar>
+                <Avatar
+                  src={user?.image || undefined}
+                  name={user?.name ? user.name.slice(0, 2).toUpperCase() : "U"}
+                  className="border-2 border-gray-400"
+                />
               </div>
             </Link>
           ) : (
             <div className="flex items-center gap-3">
               <Link
                 href="/signin"
-                className={`font-medium hidden dark:text-white md:block`}
+                className="font-medium hidden dark:text-white md:block hover:text-orange-400 transition-colors"
               >
                 Login
               </Link>
 
               <Link
                 href="/signup"
-                className={`rounded-full px-5 py-1 text-white transition-all bg-orange-400 hover:bg-orange-500
-                `}
+                className="rounded-full px-5 py-1 text-white transition-all bg-orange-400 hover:bg-orange-500"
               >
                 Register
               </Link>
             </div>
           )}
-        </div>
 
-        <ThemeButton />
+          <ThemeButton />
+        </div>
       </div>
     </div>
   );
