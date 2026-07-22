@@ -62,73 +62,74 @@ const SidebarContent = ({ pathname, user }) => {
   const menuItems = user?.role === "admin" ? adminMenuItems : userMenuItems;
 
   return (
-    <div className="h-full flex flex-col md:pt-16 pt-0 bg-gray-50 md:bg-gray-200/50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* User Info Section */}
-      {user && (
-        <div className="border-b border-gray-200 dark:border-gray-800 px-6 py-4 flex items-center gap-3">
-          <div className="relative">
-            {/* HeroUI Avatar Component Fix */}
-            <Avatar
-              src={user?.image || undefined}
-              name={user?.name ? user.name.slice(0, 2).toUpperCase() : "US"}
-              className="w-10 h-10 border border-gray-300 dark:border-gray-700"
-            />
-            {user?.isPremium && (
-              <span className="absolute -top-1 -right-1 text-yellow-500 text-xs drop-shadow-sm">
-                <FaChessQueen />
-              </span>
-            )}
+    <div className="h-full flex flex-col justify-between bg-gray-50 md:bg-gray-200/50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 pt-18 ">
+      {/* Top Part: User Info + Navigation */}
+      <div className="flex-1 flex flex-col min-h-0">
+        {/* User Info Section */}
+        {user && (
+          <div className="border-b border-gray-200 dark:border-gray-800 px-6 py-4 flex items-center gap-3 shrink-0">
+            <div className="relative">
+              <Avatar
+                src={user?.image || undefined}
+                name={user?.name ? user.name.slice(0, 2).toUpperCase() : "US"}
+                className="w-10 h-10 border border-gray-300 dark:border-gray-700"
+              />
+              {user?.isPremium && (
+                <span className="absolute -top-1 -right-1 text-yellow-500 text-xs drop-shadow-sm">
+                  <FaChessQueen />
+                </span>
+              )}
+            </div>
+
+            <div className="overflow-hidden">
+              <p className="font-medium text-gray-900 dark:text-gray-100 truncate">
+                {user?.name}
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                {user?.email}
+              </p>
+            </div>
           </div>
+        )}
 
-          <div className="overflow-hidden">
-            <p className="font-medium text-gray-900 dark:text-gray-100 truncate">
-              {user?.name}
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-              {user?.email}
-            </p>
-          </div>
-        </div>
-      )}
+        {/* Menu Navigation (Scrollable if items overflow) */}
+        <ul className="flex-1 p-4 space-y-1.5 overflow-y-auto">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
 
-      {/* Menu Navigation */}
-      <ul className="flex-1 p-4 space-y-1.5 overflow-y-auto">
-        {menuItems.map((item) => {
-          const Icon = item.icon;
+            const isActive =
+              item.href === "/dashboard" || item.href === "/dashboard/admin"
+                ? pathname === item.href
+                : pathname.startsWith(item.href);
 
-         
-          const isActive =
-            item.href === "/dashboard" || item.href === "/dashboard/admin"
-              ? pathname === item.href
-              : pathname.startsWith(item.href);
-
-          return (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={`flex items-center gap-3 rounded-md px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
-                  isActive
-                    ? "bg-gray-300/80 dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm font-semibold"
-                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-200/60 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-white"
-                }`}
-              >
-                <Icon
-                  size={18}
-                  className={
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`flex items-center gap-3 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
                     isActive
-                      ? "text-gray-900 dark:text-white"
-                      : "text-gray-500 dark:text-gray-400"
-                  }
-                />
-                <span>{item.name}</span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+                      ? "bg-gray-300/80 dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm font-semibold"
+                      : "text-gray-600 dark:text-gray-400 hover:bg-gray-200/60 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-white"
+                  }`}
+                >
+                  <Icon
+                    size={18}
+                    className={
+                      isActive
+                        ? "text-gray-900 dark:text-white"
+                        : "text-gray-500 dark:text-gray-400"
+                    }
+                  />
+                  <span>{item.name}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
 
-      {/* Logout */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-800">
+      {/* Bottom Part: Logout Button (Always Fixed at Bottom) */}
+      <div className="p-4 border-t border-gray-200 dark:border-gray-800 shrink-0 bg-gray-50 md:bg-transparent dark:bg-gray-900">
         <Logout />
       </div>
     </div>
@@ -143,7 +144,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block w-72 min-h-screen border-r border-gray-200 dark:border-gray-800">
+      <aside className="hidden lg:block w-72 h-screen sticky top-0 border-r border-gray-200 dark:border-gray-800">
         <SidebarContent pathname={pathname} user={user} />
       </aside>
 
@@ -161,10 +162,10 @@ const Sidebar = () => {
           <Drawer.Backdrop>
             <Drawer.Content
               placement="left"
-              className="max-w-[280px] bg-gray-50 dark:bg-gray-900"
+              className="max-w-[280px] bg-gray-50 dark:bg-gray-900 h-full"
             >
-              <Drawer.Dialog>
-                <Drawer.CloseTrigger className="absolute right-4 top-4 text-gray-500 dark:text-gray-400" />
+              <Drawer.Dialog className="h-full">
+                <Drawer.CloseTrigger className="absolute right-4 top-4 text-gray-500 dark:text-gray-400 z-10" />
                 <Drawer.Body className="p-0 h-full">
                   <SidebarContent pathname={pathname} user={user} />
                 </Drawer.Body>

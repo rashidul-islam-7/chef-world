@@ -38,7 +38,6 @@ const Logout = () => {
   const router = useRouter();
   const { data: session, isPending } = useSession();
 
-  // রিফ্রেশ বা পেজ চেঞ্জের সময় ব্লকড অবস্থায় থাকলে অটো লগআউট
   useEffect(() => {
     if (!isPending && session?.user?.isBlocked) {
       signOut().then(() => {

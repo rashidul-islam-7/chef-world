@@ -1,10 +1,10 @@
 import Image from "next/image";
 import RecipeRow from "./RecipeRow";
 import EditRecipeButton from "./EditButton";
-import DeleteRecipeButton from "./DeleteButton";
 import FeatureRecipeButton from "./FeatureButton";
+import DeleteRecipe from "@/components/MyRecipes/DeleteRecipe";
 
-const RecipesTable = async ({ recipes }) => {
+const RecipesTable = ({ recipes, featuredIds = [] }) => {
   if (!recipes?.length) {
     return (
       <div className="rounded-xl border border-dashed py-20 text-center text-gray-500">
@@ -13,9 +13,11 @@ const RecipesTable = async ({ recipes }) => {
     );
   }
 
+  const formattedFeaturedIds = featuredIds.map((id) => String(id));
+
   return (
     <>
-      {/* ================= Desktop Table ================= */}
+      {/* Desktop Table */}
       <div className="hidden w-full overflow-x-auto rounded-xl border text-white shadow-sm dark:border-gray-700 dark:bg-gray-900 md:block">
         <table className="table w-full">
           <thead className="bg-gray-400 text-white">
@@ -30,74 +32,88 @@ const RecipesTable = async ({ recipes }) => {
           </thead>
 
           <tbody>
-            {recipes.map((recipe, index) => (
-              <RecipeRow key={recipe._id} recipe={recipe} index={index} />
-            ))}
+            {recipes.map((recipe, index) => {
+              const isFeatured = formattedFeaturedIds.includes(
+                String(recipe._id),
+              );
+
+              return (
+                <RecipeRow
+                  key={recipe._id}
+                  recipe={recipe}
+                  index={index}
+                  isFeatured={isFeatured}
+                />
+              );
+            })}
           </tbody>
         </table>
       </div>
 
-      {/* ================= Mobile Cards ================= */}
+      {/* Mobile Cards */}
       <div className="grid grid-cols-1 gap-4 md:hidden">
-        {recipes.map((recipe, index) => (
-          <div
-            key={recipe._id}
-            className="rounded-2xl border p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-          >
-            {/* Top Section */}
-            <div className="flex items-start gap-3">
-              <Image
-                src={recipe.recipeImage}
-                alt={recipe.recipeName}
-                width={80}
-                height={80}
-                className="h-20 w-20 flex-shrink-0 rounded-xl object-cover"
-              />
+        {recipes.map((recipe, index) => {
+          const isFeatured = formattedFeaturedIds.includes(String(recipe._id));
 
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="truncate text-base font-bold">
-                    {recipe.recipeName}
-                  </h3>
+          return (
+            <div
+              key={recipe._id}
+              className="rounded-2xl border p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+            >
+              {/* Top Section */}
+              <div className="flex items-start gap-3">
+                <Image
+                  src={recipe.recipeImage}
+                  alt={recipe.recipeName}
+                  width={80}
+                  height={80}
+                  className="h-20 w-20 flex-shrink-0 rounded-xl object-cover"
+                />
 
-                  <span className="text-xs text-gray-400">#{index + 1}</span>
-                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="truncate text-base font-bold">
+                      {recipe.recipeName}
+                    </h3>
 
-                <p className="mt-1 text-sm text-gray-500">
-                  {recipe.cuisineType}
-                </p>
+                    <span className="text-xs text-gray-400">#{index + 1}</span>
+                  </div>
 
-                <div className="mt-3 space-y-1 text-sm">
-                  <p>
-                    <span className="font-medium">Author:</span>{" "}
-                    <span className="break-words">{recipe.authorName}</span>
+                  <p className="mt-1 text-sm text-gray-500">
+                    {recipe.cuisineType}
                   </p>
 
-                  <p>
-                    <span className="font-medium">Category:</span>{" "}
-                    {recipe.category}
-                  </p>
+                  <div className="mt-3 space-y-1 text-sm">
+                    <p>
+                      <span className="font-medium">Author:</span>{" "}
+                      <span className="break-words">{recipe.authorName}</span>
+                    </p>
 
-                  <p className="font-semibold text-green-600">
-                    ${recipe.price}
-                  </p>
+                    <p>
+                      <span className="font-medium">Category:</span>{" "}
+                      {recipe.category}
+                    </p>
+
+                    <p className="font-semibold text-green-600">
+                      ${recipe.price}
+                    </p>
+                  </div>
                 </div>
               </div>
+
+              {/* Action Buttons */}
+              <div className="mt-2 flex flex-wrap justify-between items-center gap-2 border-t pt-2">
+                <EditRecipeButton recipe={recipe} />
+                <DeleteRecipe recipeId={recipe._id} />
+
+                <FeatureRecipeButton
+                  recipeId={recipe._id}
+                  initialFeatured={isFeatured}
+                />
+              </div>
             </div>
-
-            {/* Action Buttons */}
-            <div className="mt-2 flex flex-wrap justify-between items-center gap-2 border-t pt-2">
-              <EditRecipeButton recipe={recipe} />
-
-              <DeleteRecipeButton recipeId={recipe._id} />
-
-              <FeatureRecipeButton
-                recipeId={recipe._id}
-                featured={recipe.featured}
-              />
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </>
   );

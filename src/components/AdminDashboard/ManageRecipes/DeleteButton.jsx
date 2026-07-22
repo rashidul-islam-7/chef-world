@@ -1,15 +1,16 @@
 "use client";
+
+import { deleteRecipe } from "@/lib/action";
 import { useRouter } from "next/navigation";
 import { AlertDialog, Button } from "@heroui/react";
 import { Trash2 } from "lucide-react";
 import { toast } from "react-toastify";
-import { deleteRecipe } from "@/lib/action";
 
-const DeleteRecipeButton = ({ recipeId }) => {
+const DeleteRecipeButton = ({ recipeId, token }) => {
   const router = useRouter();
 
   const handleDelete = async () => {
-    const res = await deleteRecipe(recipeId);
+    const res = await deleteRecipe(recipeId, token);
 
     if (res.success) {
       toast.success(res.message);

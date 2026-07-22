@@ -164,3 +164,25 @@ export const unblockUser = async (id) => {
     return { success: false, message: err.message };
   }
 };
+
+export const toggleFeaturedRecipe = async (id) => {
+  try {
+    const res = await fetch(`${API_URL}/recipes/${id}/feature`, {
+      method: "PATCH",
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      return {
+        success: false,
+        message: data?.message || "Failed to feature recipe",
+      };
+    }
+
+    return data;
+  } catch (err) {
+    console.error("Error toggling feature recipe:", err);
+    return { success: false, message: err.message || "Network Error" };
+  }
+};

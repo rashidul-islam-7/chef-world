@@ -117,3 +117,19 @@ export const getAdminUsers = async () => {
     return [];
   }
 };
+export const getFeaturedRecipes = async () => {
+  try {
+    const res = await fetch(`${API_URL}/featured-recipes`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch featured recipes");
+    }
+
+    return await res.json();
+  } catch (err) {
+    console.error("Error fetching featured recipes:", err);
+    return [];
+  }
+};

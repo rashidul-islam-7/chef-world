@@ -1,68 +1,37 @@
 import Image from "next/image";
 import EditRecipeButton from "./EditButton";
-import DeleteRecipeButton from "./DeleteButton";
 import FeatureRecipeButton from "./FeatureButton";
+import DeleteRecipe from "@/components/MyRecipes/DeleteRecipe";
 
-const RecipeRow = async ({ recipe, index }) => {
-
+export default function RecipeRow({ recipe, index, isFeatured }) {
   return (
-    <tr className="transition hover:bg-gray-50 dark:hover:bg-gray-800">
-      {/* Serial */}
-      <td className="whitespace-nowrap font-semibold">{index + 1}</td>
-
-      {/* Recipe */}
-      <td className="min-w-[180px]">
+    <tr className="border-b dark:border-gray-800">
+      <td>{index + 1}</td>
+      <td>
         <div className="flex items-center gap-3">
           <Image
             src={recipe.recipeImage}
             alt={recipe.recipeName}
-            width={60}
-            height={60}
-            className="h-14 w-14 flex-shrink-0 rounded-xl border object-cover"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-lg object-cover"
           />
-
-          <div className="min-w-0 flex-1">
-            <h3 className=" font-semibold  text-gray-500 line-clamp-1">{recipe.recipeName}</h3>
-
-            <p className=" text-sm text-gray-500 line-clamp-1">
-              {recipe.cuisineType}
-            </p>
-          </div>
+          <span className="font-medium">{recipe.recipeName}</span>
         </div>
       </td>
-
-      {/* Author */}
-      <td className="min-w-[170px]">
-        <h4 className="truncate font-medium text-gray-500">{recipe.authorName}</h4>
-
-        <p className="truncate text-xs line-clamp-1 text-gray-500">{recipe.authorEmail}</p>
-      </td>
-
-      {/* Category */}
-      <td className="whitespace-nowrap">
-        <span className="rounded-full bg-orange-100 px-2 py-1 text-xs font-semibold text-orange-600">
-          {recipe.category}
-        </span>
-      </td>
-
-      {/* Price */}
-      <td className="whitespace-nowrap font-semibold text-green-600">
-        ${recipe.price}
-      </td>
-
-      {/* Actions */}
-      <td className="min-w-[250px]">
-        <div className="flex flex-wrap items-center justify-between">
+      <td>{recipe.authorName}</td>
+      <td>{recipe.category}</td>
+      <td>${recipe.price}</td>
+      <td>
+        <div className="flex items-center justify-center gap-2">
           <EditRecipeButton recipe={recipe} />
-          <DeleteRecipeButton recipeId={recipe._id} />
+          <DeleteRecipe recipeId={recipe._id} />
           <FeatureRecipeButton
             recipeId={recipe._id}
-            initialFeatured={recipe.featured}
+            initialFeatured={isFeatured}
           />
         </div>
       </td>
     </tr>
   );
-};
-
-export default RecipeRow;
+}

@@ -1,15 +1,18 @@
+import RecipesTable from "@/components/AdminDashboard/ManageRecipes/RecipesTable";
+import { getAllRecipe, getFeaturedRecipes } from "@/lib/getData";
+import { FaUtensils } from "react-icons/fa";
+
 export const metadata = {
   title: "Manage Recipe | ChefWorld",
 };
 
-import RecipesTable from "@/components/AdminDashboard/ManageRecipes/RecipesTable";
-import { getAllRecipe } from "@/lib/getData";
-import { FaUtensils } from "react-icons/fa";
-
 const ManageRecipesPage = async () => {
-
   const recipes = await getAllRecipe();
+  const featuredRecipes = await getFeaturedRecipes();
 
+  const featuredIds =
+    featuredRecipes?.map((item) => String(item.recipeId || item._id || item)) ||
+    [];
 
   return (
     <section className="p-6">
@@ -43,7 +46,7 @@ const ManageRecipesPage = async () => {
 
       {/* Table */}
       <div className="rounded-2xl border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-900">
-        <RecipesTable recipes={recipes} />
+        <RecipesTable recipes={recipes} featuredIds={featuredIds} />
       </div>
     </section>
   );
