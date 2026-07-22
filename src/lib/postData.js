@@ -72,8 +72,8 @@ export const postPurchasedRecipe = async (data) => {
     },
     body: JSON.stringify(data),
   });
-  console.log(res)
-  console.log(res.status)
+  console.log(res);
+  console.log(res.status);
 
   if (!res.ok) {
     throw new Error("Failed to save purchased recipe");

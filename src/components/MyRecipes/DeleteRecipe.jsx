@@ -1,7 +1,6 @@
 "use client";
-
-import { authClient, useSession } from "@/lib/auth-client";
-import { deleteMyRecipe } from "@/lib/getData";
+import { deleteRecipe } from "@/lib/action";
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -10,11 +9,8 @@ import { toast } from "react-toastify";
 const DeleteRecipe = ({ recipeId }) => {
   const router = useRouter();
 
-  const { data: session } = authClient.useSession();
-  const userEmail = session?.user?.email;
-
   const handleDelete = async (id) => {
-    const response = await deleteMyRecipe(id);
+    const response = await deleteRecipe(id);
     if (response.success) {
       toast.success(response.message);
     } else {

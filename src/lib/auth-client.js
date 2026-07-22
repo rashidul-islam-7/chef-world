@@ -1,6 +1,25 @@
+// import { createAuthClient } from "better-auth/react";
+// export const authClient = createAuthClient({
+//   baseURL: process.env.BETTER_AUTH_URL,
+// });
+
+// export const { signIn, signUp, signOut, useSession } = createAuthClient();
+
+
 import { createAuthClient } from "better-auth/react";
+import { inferAdditionalFields } from "better-auth/client/plugins";
+
 export const authClient = createAuthClient({
-  baseURL: process.env.BETTER_AUTH_URL,
+  baseURL: process.env.NEXT_PUBLIC_APP_URL || process.env.BETTER_AUTH_URL,
+  plugins: [
+    inferAdditionalFields({
+      user: {
+        role: { type: "string" },
+        isPremium: { type: "boolean" },
+        isBlocked: { type: "boolean" },
+      },
+    }),
+  ],
 });
 
-export const { signIn, signUp, signOut, useSession } = createAuthClient();
+export const { signIn, signUp, signOut, useSession } = authClient;

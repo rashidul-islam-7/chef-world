@@ -1,5 +1,3 @@
-
-
 // import Image from "next/image";
 // import UserStatusBadge from "./UserStatusBadge";
 // import BlockButton from "./BlockButton";
@@ -85,17 +83,10 @@
 
 // export default UserRow;
 
-
-
 import Image from "next/image";
 import UserStatusBadge from "./UserStatusBadge";
 import BlockButton from "./BlockButton";
-import {
-  LuShieldAlert,
-  LuUser,
-  LuCrown,
-  LuSparkles,
-} from "react-icons/lu";
+import { LuShieldAlert, LuUser, LuCrown, LuSparkles } from "react-icons/lu";
 
 const UserRow = ({ user }) => {
   return (
@@ -109,8 +100,12 @@ const UserRow = ({ user }) => {
             className="rounded-full h-11 w-11 border border-green-200 object-cover flex-shrink-0"
           />
           <div className="flex flex-col">
-            <h3 className="font-medium text-gray-900 dark:text-white">{user.name}</h3>
-            <p className="text-xs text-gray-500 dark:text-gray-400">{user.email}</p>
+            <h3 className="font-medium text-gray-900 dark:text-white">
+              {user.name}
+            </h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {user.email}
+            </p>
           </div>
         </div>
       </td>
@@ -153,9 +148,9 @@ const UserRow = ({ user }) => {
       {/* Created Date */}
       <td className="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-300">
         {new Date(user.createdAt).toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
+          year: "numeric",
+          month: "short",
+          day: "numeric",
         })}
       </td>
 

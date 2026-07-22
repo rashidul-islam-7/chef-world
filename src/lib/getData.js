@@ -45,22 +45,6 @@ export const getMyRecipes = async (email) => {
   }
 };
 
-// delete my-recipes with id
-export const deleteMyRecipe = async (id, email) => {
-  try {
-    const res = await fetch(`${API_URL}/delete-my-recipe/${id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) {
-      throw new Error("Could not delete the recipe!");
-    }
-    return res.json();
-  } catch (err) {
-    console.error(err);
-    return { success: false, message: err.message };
-  }
-};
-
 //get my purchased recipes
 export const getMyPurchasedRecipes = async (userId) => {
   try {

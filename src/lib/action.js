@@ -116,3 +116,51 @@ export const removeFavoriteFromDB = async (recipeId, userId) => {
     return { success: false, error: error.message };
   }
 };
+
+export const deleteRecipe = async (id) => {
+  try {
+    const res = await fetch(`${API_URL}/delete-recipe/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) {
+      throw new Error("Could not delete the recipe!");
+    }
+    return res.json();
+  } catch (err) {
+    console.error(err);
+    return { success: false, message: err.message };
+  }
+};
+
+export const blockUser = async (id) => {
+  try {
+    const res = await fetch(`${API_URL}/admin/users/block/${id}`, {
+      method: "PATCH",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to block user");
+    }
+    return res.json();
+  } catch (err) {
+    console.error(err);
+    return { success: false, message: err.message };
+  }
+};
+
+export const unblockUser = async (id) => {
+  try {
+    const res = await fetch(`${API_URL}/admin/users/unblock/${id}`, {
+      method: "PATCH",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to unblock user");
+    }
+
+    return res.json();
+  } catch (err) {
+    console.error(err);
+    return { success: false, message: err.message };
+  }
+};

@@ -62,7 +62,12 @@ const SignInClient = () => {
       });
 
       if (error) {
-        setError(error.message || "Invalid email or password");
+        if (error.message === "USER_BLOCKED" || error.status === 403) {
+          setError("Your account has been blocked by an administrator.");
+        } else {
+          setError(error.message || "Invalid email or password");
+        }
+        setIsLoading(false);
         return;
       }
 
@@ -70,12 +75,12 @@ const SignInClient = () => {
       router.push("/");
     } catch (err) {
       console.error(err);
-
       setError(err?.message || "Unable to sign in. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="">
       <div className="">
@@ -100,11 +105,9 @@ const SignInClient = () => {
         {/* Divider */}
         <div className="my-6 flex items-center">
           <div className="h-px flex-1 bg-gray-300 dark:bg-gray-700"></div>
-
           <span className="mx-4 text-xs font-medium uppercase text-gray-400">
             or
           </span>
-
           <div className="h-px flex-1 bg-gray-300 dark:bg-gray-700"></div>
         </div>
 

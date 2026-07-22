@@ -1,11 +1,12 @@
 "use client";
-
-import { blockUser, unblockUser } from "@/lib/data";
+import { blockUser, unblockUser } from "@/lib/action";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { LuLock } from "react-icons/lu";
 
 const BlockButton = ({ user }) => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const isAdmin = user.role === "admin";
 
@@ -20,9 +21,10 @@ const BlockButton = ({ user }) => {
         await blockUser(id);
       }
 
-      location.reload();
+      router.refresh();
     } catch (error) {
       console.error("Error updating user status:", error);
+    } finally {
       setLoading(false);
     }
   }
