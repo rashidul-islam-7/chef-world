@@ -69,11 +69,13 @@ const SidebarContent = ({ pathname, user }) => {
         {user && (
           <div className="border-b border-gray-200 dark:border-gray-800 px-6 py-4 flex items-center gap-3 shrink-0">
             <div className="relative">
-              <Avatar
-                src={user?.image || undefined}
-                name={user?.name ? user.name.slice(0, 2).toUpperCase() : "US"}
-                className="w-10 h-10 border border-gray-300 dark:border-gray-700"
-              />
+              <Avatar>
+                <Avatar.Image
+                  src={user?.image || user.name.slice(0, 2).toUpperCase()}
+                  name={user?.name ? user.name.slice(0, 2).toUpperCase() : "U"}
+                  className="w-10 h-10 border border-gray-300 dark:border-gray-700"
+                />
+              </Avatar>
               {user?.isPremium && (
                 <span className="absolute -top-1 -right-1 text-yellow-500 text-xs drop-shadow-sm">
                   <FaChessQueen />

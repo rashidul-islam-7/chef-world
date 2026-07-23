@@ -6,6 +6,7 @@ import FavoriteButton from "../BrowseRecipe/FavoriteButton";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useSession } from "@/lib/auth-client";
+import ReportModal from "./ReportModal";
 
 const RecipeActions = ({ recipe }) => {
   const { data } = useSession();
@@ -49,10 +50,7 @@ const RecipeActions = ({ recipe }) => {
           Purchase Recipe
         </button>
       </form>
-      <button className="btn w-full btn-outline rounded-full bg-red-500 hover:bg-red-700 text-white">
-        <FaFlag />
-        Report Recipe
-      </button>
+      <ReportModal recipeId={recipe?._id} user={user} />
     </div>
   );
 };

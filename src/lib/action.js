@@ -186,3 +186,59 @@ export const toggleFeaturedRecipe = async (id) => {
     return { success: false, message: err.message || "Network Error" };
   }
 };
+
+
+// ১. রিপোর্ট জমা দিন (User Action)
+export const submitRecipeReport = async (reportData) => {
+  try {
+    const res = await fetch(`${API_URL}/reports`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reportData),
+    });
+    return await res.json();
+  } catch (err) {
+    console.error("Error submitting report:", err);
+    return { success: false, message: err.message || "Network Error" };
+  }
+};
+
+// ২. সব রিপোর্ট গেট করুন (Admin Fetch)
+export const getAllReports = async () => {
+  try {
+    const res = await fetch(`${API_URL}/reports`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error("Failed to fetch reports");
+    return await res.json();
+  } catch (err) {
+    console.error("Error fetching reports:", err);
+    return [];
+  }
+};
+
+// ৩. রিপোর্ট ডিসমিস করুন (Admin Dismiss Action)
+export const dismissReport = async (reportId) => {
+  try {
+    const res = await fetch(`${API_URL}/reports/${reportId}`, {
+      method: "DELETE",
+    });
+    return await res.json();
+  } catch (err) {
+    console.error("Error dismissing report:", err);
+    return { success: false, message: err.message || "Network Error" };
+  }
+};
+
+// ৪. রেসিপি রিমুভ করুন (Admin Remove Recipe Action)
+export const removeReportedRecipe = async (recipeId) => {
+  try {
+    const res = await fetch(`${API_URL}/reports/recipe/${recipeId}`, {
+      method: "DELETE",
+    });
+    return await res.json();
+  } catch (err) {
+    console.error("Error removing recipe:", err);
+    return { success: false, message: err.message || "Network Error" };
+  }
+};

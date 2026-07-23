@@ -125,11 +125,15 @@ const NavBar = () => {
                 <p className="hidden md:block font-medium dark:text-gray-100">
                   {user?.name || "User"}
                 </p>
-                <Avatar
-                  src={user?.image || undefined}
-                  name={user?.name ? user.name.slice(0, 2).toUpperCase() : "U"}
-                  className="border-2 border-gray-400"
-                />
+                <Avatar>
+                  <Avatar.Image
+                    src={user?.image || user?.name.slice(0, 1).toUpperCase()}
+                    name={
+                      user?.name ? user.name.slice(0, 2).toUpperCase() : "U"
+                    }
+                    className="border-2 border-gray-400"
+                  />
+                </Avatar>
               </div>
             </Link>
           ) : (
