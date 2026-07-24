@@ -133,3 +133,23 @@ export const getFeaturedRecipes = async () => {
     return [];
   }
 };
+
+export async function getAllTransactions() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/admin/transactions`,
+      {
+        cache: "no-store",
+      },
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch transactions");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Failed to fetch transactions:", error);
+    return [];
+  }
+}
