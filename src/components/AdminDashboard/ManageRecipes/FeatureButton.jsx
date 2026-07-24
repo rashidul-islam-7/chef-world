@@ -51,7 +51,7 @@ export default function FeatureRecipeButton({
       }`}
     >
       <FaStar className={loading ? "animate-spin" : ""} />
-      {loading ? "Processing..." : isFeatured ? "Remove Feature" : "Feature"}
+      {loading ? "Processing..." : isFeatured ? "Unfeatured" : "Feature"}
     </button>
   );
 }
