@@ -187,8 +187,6 @@ export const toggleFeaturedRecipe = async (id) => {
   }
 };
 
-
-// ১. রিপোর্ট জমা দিন (User Action)
 export const submitRecipeReport = async (reportData) => {
   try {
     const res = await fetch(`${API_URL}/reports`, {
@@ -203,7 +201,6 @@ export const submitRecipeReport = async (reportData) => {
   }
 };
 
-// ২. সব রিপোর্ট গেট করুন (Admin Fetch)
 export const getAllReports = async () => {
   try {
     const res = await fetch(`${API_URL}/reports`, {
@@ -217,7 +214,6 @@ export const getAllReports = async () => {
   }
 };
 
-// ৩. রিপোর্ট ডিসমিস করুন (Admin Dismiss Action)
 export const dismissReport = async (reportId) => {
   try {
     const res = await fetch(`${API_URL}/reports/${reportId}`, {
@@ -230,7 +226,6 @@ export const dismissReport = async (reportId) => {
   }
 };
 
-// ৪. রেসিপি রিমুভ করুন (Admin Remove Recipe Action)
 export const removeReportedRecipe = async (recipeId) => {
   try {
     const res = await fetch(`${API_URL}/reports/recipe/${recipeId}`, {
