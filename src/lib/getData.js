@@ -2,7 +2,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const getAllRecipe = async ({ searchParams } = {}) => {
   try {
-    const searchQuery = await searchParams;
+    const searchQuery = (await searchParams) || {};
     const page = searchQuery.page || 1;
     const limit = searchQuery.limit || 10;
 
@@ -53,9 +53,6 @@ export const getMyRecipes = async (email) => {
 export const getMyPurchasedRecipes = async (userId) => {
   try {
     const res = await fetch(`${API_URL}/my-purchased-recipes/${userId}`);
-
-    console.log("fetch", res);
-    console.log("fetch", (await res).status);
     if (!res.ok) {
       throw new Error("Failed to fetch purchased recipes");
     }

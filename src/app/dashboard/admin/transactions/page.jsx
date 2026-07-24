@@ -8,10 +8,15 @@ export const metadata = {
   description: "View all premium subscriptions and recipe purchases.",
 };
 
-const TransactionsPage = async ({searchParams}) => {
+const TransactionsPage = async ({ searchParams }) => {
   // Fetch combined transactions data from server
   const transactions = await getAllTransactions({ searchParams });
-  const { totalPage = 1, page = 1, totalRevenue, data = [] } = transactions || {};
+  const {
+    totalPage = 1,
+    page = 1,
+    totalRevenue,
+    data = [],
+  } = transactions || {};
   return (
     <section className="w-full px-3 py-4 sm:px-6 lg:px-8">
       {/* Page Header Section */}

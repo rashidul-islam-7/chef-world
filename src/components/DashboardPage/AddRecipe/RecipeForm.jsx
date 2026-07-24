@@ -116,7 +116,6 @@ const RecipeForm = ({ recipe }) => {
         }
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.message || "Something went wrong");
     } finally {
       setLoading(false);

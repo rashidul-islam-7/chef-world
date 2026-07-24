@@ -6,7 +6,8 @@ import BrowseRecipeClient from "@/components/BrowseRecipe/BrowseRecipeClient";
 import { PaginationBasic } from "@/components/Pagination";
 import { getAllRecipe } from "@/lib/getData";
 
-export default async function BrowseRecipesPage({ searchParams }) {
+export default async function BrowseRecipesPage(props) {
+  const searchParams = await props?.searchParams;
   const recipes = await getAllRecipe({ searchParams });
   const { totalPage = 1, page = 1, data = [] } = recipes || {};
 

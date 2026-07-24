@@ -6,8 +6,6 @@ import { FaEdit } from "react-icons/fa";
 
 const EditRecipe = async ({ recipeId }) => {
 
-  console.log(recipeId)
-
   return (
     <div>
       <Link href={`/dashboard/edit-recipe/${recipeId}`}>

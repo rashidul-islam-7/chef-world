@@ -13,9 +13,6 @@ export const postRecipe = async (recipeData) => {
 
     const data = await res.json();
 
-    console.log("Status:", res.status);
-    console.log("Response:", data);
-
     if (!res.ok) {
       throw new Error(data.message);
     }
@@ -72,9 +69,6 @@ export const postPurchasedRecipe = async (data) => {
     },
     body: JSON.stringify(data),
   });
-  console.log(res);
-  console.log(res.status);
-
   if (!res.ok) {
     throw new Error("Failed to save purchased recipe");
   }
