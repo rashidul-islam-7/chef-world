@@ -3,11 +3,12 @@ export const metadata = {
 };
 
 import BrowseRecipeClient from "@/components/BrowseRecipe/BrowseRecipeClient";
+import { PaginationBasic } from "@/components/Pagination";
 import { getAllRecipe } from "@/lib/getData";
 
-export default async function BrowseRecipesPage() {
-  const recipes = await getAllRecipe();
-
+export default async function BrowseRecipesPage({ searchParams }) {
+  const recipes = await getAllRecipe({ searchParams });
+  const { totalPage = 1, page = 1, data = [] } = recipes || {};
 
   return (
     <section className=" bg-gray-100/50 dark:bg-gray-900">
@@ -28,7 +29,12 @@ export default async function BrowseRecipesPage() {
           </p>
         </div>
 
-        <BrowseRecipeClient recipes={recipes} />
+        <BrowseRecipeClient recipes={data} />
+        {totalPage > 1 && (
+          <div className="mt-10">
+            <PaginationBasic totalPages={totalPage} currentPage={page} />
+          </div>
+        )}
       </div>
     </section>
   );

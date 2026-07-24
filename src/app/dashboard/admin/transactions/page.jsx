@@ -1,4 +1,5 @@
 import TransactionCard from "@/components/AdminDashboard/Transactions/TransactionCard";
+import { PaginationBasic } from "@/components/Pagination";
 import { getAllTransactions } from "@/lib/getData";
 import { LuReceipt, LuDollarSign } from "react-icons/lu";
 
@@ -7,16 +8,10 @@ export const metadata = {
   description: "View all premium subscriptions and recipe purchases.",
 };
 
-const TransactionsPage = async () => {
+const TransactionsPage = async ({searchParams}) => {
   // Fetch combined transactions data from server
-  const transactions = await getAllTransactions();
-
-  // Calculate Total Revenue
-  const totalRevenue = transactions.reduce(
-    (sum, item) => sum + (Number(item.amount) || 0),
-    0,
-  );
-
+  const transactions = await getAllTransactions({ searchParams });
+  const { totalPage = 1, page = 1, totalRevenue, data = [] } = transactions || {};
   return (
     <section className="w-full px-3 py-4 sm:px-6 lg:px-8">
       {/* Page Header Section */}
@@ -48,15 +43,21 @@ const TransactionsPage = async () => {
       </div>
 
       {/* Grid List of Transaction Cards */}
-      {!transactions?.length ? (
+      {!data?.length ? (
         <div className="rounded-2xl border border-dashed border-gray-300 py-16 text-center text-gray-500 dark:border-gray-800 dark:text-gray-400">
           No transactions recorded yet.
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {transactions.map((transaction) => (
+          {data.map((transaction) => (
             <TransactionCard key={transaction._id} transaction={transaction} />
           ))}
+        </div>
+      )}
+
+      {totalPage > 1 && (
+        <div className="mt-10">
+          <PaginationBasic totalPages={totalPage} currentPage={page} />
         </div>
       )}
     </section>

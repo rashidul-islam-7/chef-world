@@ -1,8 +1,12 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const getAllRecipe = async () => {
+export const getAllRecipe = async ({ searchParams } = {}) => {
   try {
-    const res = await fetch(`${API_URL}/recipes`, {
+    const searchQuery = await searchParams;
+    const page = searchQuery.page || 1;
+    const limit = searchQuery.limit || 10;
+
+    const res = await fetch(`${API_URL}/recipes?page=${page}&limit=${limit}`, {
       next: {
         revalidate: 60,
       },
@@ -13,7 +17,7 @@ export const getAllRecipe = async () => {
     return res.json();
   } catch (err) {
     console.error(err);
-    return [];
+    return { totalPage: 1, page: 1, skip: 0, data: [] };
   }
 };
 
@@ -117,6 +121,7 @@ export const getAdminUsers = async () => {
     return [];
   }
 };
+
 export const getFeaturedRecipes = async () => {
   try {
     const res = await fetch(`${API_URL}/featured-recipes`, {
@@ -134,10 +139,14 @@ export const getFeaturedRecipes = async () => {
   }
 };
 
-export async function getAllTransactions() {
+export async function getAllTransactions({ searchParams } = {}) {
   try {
+    const searchQuery = await searchParams;
+    const page = searchQuery.page || 1;
+    const limit = searchQuery.limit || 10;
+
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/admin/transactions`,
+      `${API_URL}/admin/transactions?page=${page}&limit=${limit}`,
       {
         cache: "no-store",
       },

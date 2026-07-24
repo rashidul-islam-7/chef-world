@@ -10,21 +10,31 @@ const BrowseRecipeClient = ({ recipes }) => {
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  // ১. recipes যদি অবজেক্ট হয় তবে recipes.data নিবে, আর অ্যারে হলে সরাসরি recipes নিবে
+  const recipeList = useMemo(() => {
+    if (Array.isArray(recipes)) return recipes;
+    if (Array.isArray(recipes?.data)) return recipes.data;
+    return [];
+  }, [recipes]);
+
+  // ২. ফিল্টারিং লজিক Safe Array-র ওপর চালানো হচ্ছে
   const filteredRecipes = useMemo(() => {
-    let filtered = recipes;
+    let filtered = recipeList;
 
     if (selectedCategory !== "All") {
       filtered = filtered.filter(
-        (recipe) => recipe.category === selectedCategory,
+        (recipe) => recipe?.category === selectedCategory,
       );
     }
     if (searchText) {
       filtered = filtered.filter((recipe) =>
-        recipe.recipeName.toLowerCase().includes(searchText.toLowerCase()),
+        (recipe?.recipeName || recipe?.title || "")
+          .toLowerCase()
+          .includes(searchText.toLowerCase()),
       );
     }
     return filtered;
-  }, [recipes, searchText, selectedCategory]);
+  }, [recipeList, searchText, selectedCategory]);
 
   return (
     <>
@@ -47,6 +57,13 @@ const BrowseRecipeClient = ({ recipes }) => {
               recipes
             </p>
           </div>
+
+          {/* Grid List - শুধু ডাটা থাকলেই গ্রিডটি রেন্ডার হবে */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+            {filteredRecipes.map((recipe) => (
+              <RecipeCard key={recipe._id} recipe={recipe} />
+            ))}
+          </div>
         </>
       ) : (
         <div className="flex flex-col items-center justify-center py-24">
@@ -67,7 +84,6 @@ const BrowseRecipeClient = ({ recipes }) => {
           </p>
 
           {/* Button */}
-
           <button
             onClick={() => {
               setSearchText("");
@@ -79,12 +95,6 @@ const BrowseRecipeClient = ({ recipes }) => {
           </button>
         </div>
       )}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
-        {filteredRecipes.map((recipe) => (
-          <RecipeCard key={recipe._id} recipe={recipe} />
-        ))}
-      </div>
     </>
   );
 };
