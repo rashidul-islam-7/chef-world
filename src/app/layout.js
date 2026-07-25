@@ -5,8 +5,8 @@ import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
 import { SessionProvider } from "@/components/Provider/SessionProvider";
-// import { auth } from "@/lib/auth";
-// import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
