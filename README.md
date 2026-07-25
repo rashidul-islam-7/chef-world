@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## ChefWorld – Recipe Sharing Platform
 
-## Getting Started
+A modern full-stack recipe sharing platform where users can create, discover, purchase, and manage recipes. ChefWorld provides a seamless experience for food enthusiasts to share their culinary creations and explore recipes from around the world.
 
-First, run the development server:
+## 🌐 Live Links
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Live Site:** https://your-live-site.vercel.app
+- **Client Repository:** https://github.com/rashidul-islam-7/chef-world
+- **Server Repository:** https://github.com/rashidul-islam-7/chef-wrold-server
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📸 Preview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Home Page | Dashboard |
+|------------|-----------|
+| ![Home](./public/home_page.png) | ![Dashboard](./public/dashboard.png) |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 👤 User Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Secure Email & Password Authentication
+- Google Login
+- Protected Routes
+- Create, Update & Delete Recipes
+- Browse All Recipes
+- Recipe Details Page
+- Like Recipes
+- Favorite Recipes
+- Purchase Recipes with Stripe
+- Premium Membership
+- Unlimited Recipe Creation for Premium Users
+- Recipe Reporting
+- Responsive Design
+- Dark / Light Mode
+- Pagination
+- Category Filtering
 
-## Deploy on Vercel
+### 👑 Admin Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Dashboard Overview
+- Manage Users
+- Block / Unblock Users
+- Manage Recipes
+- Feature Recipes
+- Delete Recipes
+- Review Reports
+- Transaction
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- Next.js (App Router)
+- Tailwind CSS
+- DaisyUI
+- HeroUI
+- Framer Motion
+- ToastAlert
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Better Auth
+- CORS
+
+### Payment
+
+- Stripe Checkout
+
+---
+
+## 👨‍💼 Admin Credentials
+
+> **Email:** rashed@gmail.com
+
+> **Password:** Rashed@134
+
+---
+
+## 👨‍💻 Developer
+
+**Md. Rashidul Islam**
+
+- GitHub: https://github.com/rashidul-islam-7
+- Email: jrashidulislam0103@gmail.com
+
+---
+
+## ⭐ Support
+
+If you like this project, please consider giving it a ⭐ on GitHub.
