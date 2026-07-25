@@ -1,3 +1,5 @@
+import { getTokenServer } from "./getTokenServer";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const getAllRecipe = async ({ searchParams } = {}) => {
@@ -86,12 +88,17 @@ export const getUserDashboardStats = async (userId) => {
 
 export const getAdminDashboardStats = async () => {
   try {
-    const res = await fetch(`${API_URL}/admin/dashboard`);
+    const token = await getTokenServer();
+    const res = await fetch(`${API_URL}/admin/dashboard`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    });
 
     if (!res.ok) {
       throw new Error("Failed to fetch admin dashboard stats!");
     }
-
     return await res.json();
   } catch (err) {
     console.error(err);

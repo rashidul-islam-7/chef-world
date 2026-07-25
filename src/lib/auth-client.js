@@ -7,7 +7,7 @@
 
 
 import { createAuthClient } from "better-auth/react";
-import { inferAdditionalFields } from "better-auth/client/plugins";
+import { inferAdditionalFields, jwtClient } from "better-auth/client/plugins";
 
 export const authClient = createAuthClient({
   baseURL: process.env.NEXT_PUBLIC_APP_URL || process.env.BETTER_AUTH_URL,
@@ -19,6 +19,9 @@ export const authClient = createAuthClient({
         isBlocked: { type: "boolean" },
       },
     }),
+
+    jwtClient() 
+  
   ],
 });
 

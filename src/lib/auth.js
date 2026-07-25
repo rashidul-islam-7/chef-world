@@ -62,6 +62,7 @@
 
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { betterAuth } from "better-auth";
+import { jwt } from "better-auth/plugins";
 import { MongoClient, ObjectId } from "mongodb";
 
 const client = new MongoClient(process.env.MONGODB_URI);
@@ -118,12 +119,10 @@ export const auth = betterAuth({
         },
       },
     },
-    // 🔴 সাইন ইন করার ঠিক আগে ব্লকড চেক করার হুক
     session: {
       create: {
         before: async (session) => {
           try {
-            // MongoDB ID Object বা String উভয় ফরম্যাটের জন্যই নিরাপদ চেক
             let targetId = session.userId;
             if (typeof targetId === "string" && ObjectId.isValid(targetId)) {
               targetId = new ObjectId(targetId);
@@ -133,7 +132,6 @@ export const auth = betterAuth({
               $or: [{ _id: targetId }, { _id: session.userId }],
             });
 
-            // ইউজার ব্লকড থাকলে এরর থ্রো করবে
             if (user && user.isBlocked === true) {
               throw new Error("USER_BLOCKED");
             }
@@ -150,4 +148,13 @@ export const auth = betterAuth({
       },
     },
   },
+
+  session: {
+    maxAge: 60 * 60 * 24 * 7, // 7 days
+    cookieCache: {
+      enabled: true,
+    },
+  },
+
+  plugins: [jwt()]
 });
