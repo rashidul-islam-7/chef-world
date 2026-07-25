@@ -5,8 +5,8 @@ import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
 import { SessionProvider } from "@/components/Provider/SessionProvider";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+// import { auth } from "@/lib/auth";
+// import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,9 +23,9 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  // const session = await auth.api.getSession({
+  //   headers: await headers(),
+  // });
 
   return (
     <html
@@ -35,7 +35,7 @@ export default async function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Providers>
-          <SessionProvider session={session}>
+          <SessionProvider session={null}>
             <NavBar />
             <main>{children}</main>
             <Footer />
