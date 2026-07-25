@@ -32,7 +32,7 @@ const HeroSection = () => {
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-1 text-sm font-medium text-orange-600 shadow-sm transition-all hover:bg-orange-100">
               <Utensils className="w-4 h-4" />
-              <span>Welcome to CookWorld</span>
+              <span>Welcome to ChefWorld</span>
             </span>
 
             <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl  font-extrabold leading-tight">

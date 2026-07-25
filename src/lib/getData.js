@@ -1,4 +1,4 @@
-import { getTokenServer } from "./getTokenServer";
+// import { getTokenServer } from "./getTokenServer";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -88,12 +88,12 @@ export const getUserDashboardStats = async (userId) => {
 
 export const getAdminDashboardStats = async () => {
   try {
-    const token = await getTokenServer();
+    // const token = await getTokenServer();
     const res = await fetch(`${API_URL}/admin/dashboard`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      //   authorization: `Bearer ${token}`,
+      // },
     });
 
     if (!res.ok) {
