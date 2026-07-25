@@ -23,9 +23,9 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  // const session = await auth.api.getSession({
-  //   headers: await headers(),
-  // });
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   return (
     <html
@@ -35,7 +35,7 @@ export default async function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Providers>
-          <SessionProvider session={null}>
+          <SessionProvider session={session}>
             <NavBar />
             <main>{children}</main>
             <Footer />
