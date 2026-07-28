@@ -102,7 +102,7 @@ const SidebarContent = ({ pathname, user }) => {
             const isActive =
               item.href === "/dashboard" || item.href === "/dashboard/admin"
                 ? pathname === item.href
-                : pathname.startsWith(item.href);
+                : pathname.item.href;
 
             return (
               <li key={item.href}>
