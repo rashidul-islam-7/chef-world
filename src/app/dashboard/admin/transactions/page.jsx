@@ -14,9 +14,10 @@ const TransactionsPage = async ({ searchParams }) => {
   const {
     totalPage = 1,
     page = 1,
-    totalRevenue,
+    totalRevenue = 0,
     data = [],
   } = transactions || {};
+
   return (
     <section className="w-full px-3 py-4 sm:px-6 lg:px-8">
       {/* Page Header Section */}

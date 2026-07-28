@@ -163,6 +163,12 @@ export async function getAllTransactions({ searchParams } = {}) {
     return await res.json();
   } catch (error) {
     console.error("Failed to fetch transactions:", error);
-    return [];
+
+    return {
+      totalPage: 1,
+      page: 1,
+      totalRevenue: 0,
+      data: [],
+    };
   }
 }
