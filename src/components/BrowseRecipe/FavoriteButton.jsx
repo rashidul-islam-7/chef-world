@@ -85,3 +85,4 @@ const FavoriteButton = ({ recipe, children, className = "" }) => {
 };
 
 export default FavoriteButton;
+

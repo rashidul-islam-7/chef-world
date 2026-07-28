@@ -237,3 +237,39 @@ export const removeReportedRecipe = async (recipeId) => {
     return { success: false, message: err.message || "Network Error" };
   }
 };
+
+
+
+
+
+
+
+// // Toggle Like
+// export const toggleLikeRecipe = async (recipeId, userId) => {
+//   const res = await fetch(`${API_URL}/recipes/${recipeId}/like`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ userId }),
+//   });
+
+//   const data = await res.json();
+//   if (!res.ok) throw new Error(data.message || "Failed to toggle like");
+//   return data;
+// };
+
+// // Toggle Favorite
+// export const toggleFavoriteRecipe = async (recipeId, userId) => {
+//   const res = await fetch(`${API_URL}/favorites`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ recipeId, userId }),
+//   });
+
+//   const data = await res.json();
+//   if (!res.ok) throw new Error(data.message || "Failed to toggle favorite");
+//   return data;
+// };

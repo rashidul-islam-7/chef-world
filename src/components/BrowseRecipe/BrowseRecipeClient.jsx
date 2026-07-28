@@ -10,14 +10,12 @@ const BrowseRecipeClient = ({ recipes }) => {
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // ১. recipes যদি অবজেক্ট হয় তবে recipes.data নিবে, আর অ্যারে হলে সরাসরি recipes নিবে
   const recipeList = useMemo(() => {
     if (Array.isArray(recipes)) return recipes;
     if (Array.isArray(recipes?.data)) return recipes.data;
     return [];
   }, [recipes]);
 
-  // ২. ফিল্টারিং লজিক Safe Array-র ওপর চালানো হচ্ছে
   const filteredRecipes = useMemo(() => {
     let filtered = recipeList;
 
@@ -58,7 +56,6 @@ const BrowseRecipeClient = ({ recipes }) => {
             </p>
           </div>
 
-          {/* Grid List - শুধু ডাটা থাকলেই গ্রিডটি রেন্ডার হবে */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
             {filteredRecipes.map((recipe) => (
               <RecipeCard key={recipe._id} recipe={recipe} />

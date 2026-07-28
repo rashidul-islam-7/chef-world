@@ -1,5 +1,4 @@
 "use client";
-import { useSessionContext } from "@/components/Provider/SessionProvider";
 import { authClient } from "@/lib/auth-client";
 import { postRecipe, updateRecipe } from "@/lib/postData";
 import { useRouter } from "next/navigation";
@@ -16,7 +15,7 @@ const RecipeForm = ({ recipe }) => {
 
   const router = useRouter();
 
-  const session = useSessionContext();
+  const { data: session } = authClient.useSession();
   const user = session?.user;
 
   const handleImage = (e) => {
@@ -57,7 +56,7 @@ const RecipeForm = ({ recipe }) => {
           toast.error("Image upload failed");
           return;
         }
-        imageUrl = imageData.data.display_url;
+        imageUrl = imageData.data.url;
       }
 
       if (!imageUrl) {

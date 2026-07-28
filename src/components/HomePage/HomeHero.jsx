@@ -49,7 +49,7 @@ const HeroSection = () => {
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Link
-                href="/recipes"
+                href="/AllRecipe"
                 className="px-7 py-3 rounded-xl bg-orange-500 text-white font-medium hover:bg-orange-600 transition-all duration-300 text-center"
               >
                 Browse Recipes
