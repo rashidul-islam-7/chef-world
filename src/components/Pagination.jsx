@@ -19,7 +19,7 @@ export function PaginationBasic({ totalPages = 1, currentPage = 1 }) {
   };
 
   return (
-    <Pagination className="justify-center">
+    <Pagination className="justify-center mt-10">
       <Pagination.Content>
         {/* Previous Button */}
         <Pagination.Item>

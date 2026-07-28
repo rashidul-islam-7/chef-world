@@ -1,7 +1,5 @@
 import RecipeForm from "@/components/DashboardPage/AddRecipe/RecipeForm";
-import { auth } from "@/lib/auth";
 import { getRecipeById } from "@/lib/getData";
-import { headers } from "next/headers";
 import React from "react";
 
 const EditRecipe = async ({ params }) => {

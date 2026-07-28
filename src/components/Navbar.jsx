@@ -163,9 +163,6 @@
 
 // export default NavBar;
 
-
-
-
 "use client";
 
 import Link from "next/link";
@@ -174,11 +171,11 @@ import { RiMenu2Fill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { Avatar } from "@heroui/react";
 import ThemeButton from "./ThemeButton";
-import { useSessionContext } from "./Provider/SessionProvider";
+import { useSession } from "@/lib/auth-client";
 
 const NavBar = () => {
   const pathname = usePathname();
-  const session = useSessionContext();
+  const { data: session } = useSession();
   const user = session?.user;
 
   const navLinks = [

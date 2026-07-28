@@ -54,8 +54,6 @@ import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
 import { SessionProvider } from "@/components/Provider/SessionProvider";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,20 +69,7 @@ export const metadata = {
   title: "ChefWorld",
 };
 
-export default async function RootLayout({ children }) {
-  let session = null;
-
-  // Try-catch block ensuring static prerendering/build step never crashes
-  try {
-    const reqHeaders = await headers();
-    session = await auth.api.getSession({
-      headers: reqHeaders,
-    });
-  } catch (error) {
-    // Build time or static pass fallback
-    session = null;
-  }
-
+export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
@@ -93,7 +78,7 @@ export default async function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Providers>
-          <SessionProvider session={session}>
+          <SessionProvider>
             <NavBar />
             <main>{children}</main>
             <Footer />

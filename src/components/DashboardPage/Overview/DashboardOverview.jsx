@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import { FaBookOpen, FaHeart, FaThumbsUp, FaCrown } from "react-icons/fa";
 import OverviewStatsCard from "./OverviewStatsCard";
-import { useSessionContext } from "@/components/Provider/SessionProvider";
 import { getUserDashboardStats } from "@/lib/getData";
+import { authClient } from "@/lib/auth-client";
 
 export default function DashboardOverview() {
-  const session = useSessionContext();
+  const { data: session } = authClient.useSession();
   const userId = session?.user?.id;
   const user_isPremium = session?.user?.isPremium;
 

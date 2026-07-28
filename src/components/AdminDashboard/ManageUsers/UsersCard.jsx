@@ -1,3 +1,5 @@
+"use client";
+
 import UserStatusBadge from "./UserStatusBadge";
 import BlockButton from "./BlockButton";
 import {
@@ -7,6 +9,7 @@ import {
   LuSparkles,
   LuCalendar,
 } from "react-icons/lu";
+import { Avatar } from "@heroui/react";
 
 export default function UserCard({ user }) {
   const formattedDate = user?.createdAt
@@ -23,13 +26,22 @@ export default function UserCard({ user }) {
         {/* Profile Header & Basic Info */}
         <div className="flex items-start gap-3">
           <div className="relative h-12 w-12 shrink-0">
-            <img
+            {/* <img
               src={user?.image || "/default-avatar.png"}
               alt={user?.name || "User Avatar"}
               fill
               sizes="48px"
               className="rounded-full border border-gray-200 object-cover shadow-sm dark:border-gray-700"
-            />
+            /> */}
+            <Avatar className="rounded-full border border-gray-200 object-cover shadow-sm dark:border-gray-700 text-[35px]">
+              <Avatar.Image
+                src={user?.image || "/default-avatar.png"}
+                alt={user?.name || "User Avatar"}
+              />
+              <Avatar.Fallback>
+                {user?.name?.slice(0, 2).toUpperCase() || "U"}
+              </Avatar.Fallback>
+            </Avatar>
           </div>
 
           <div className="min-w-0 flex-1">

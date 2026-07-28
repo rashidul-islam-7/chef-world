@@ -1,4 +1,5 @@
 import RecipeCard from "@/components/AdminDashboard/ManageRecipes/RecipeCard";
+import { PaginationBasic } from "@/components/Pagination";
 import { getAllRecipe, getFeaturedRecipes } from "@/lib/getData";
 import { FaUtensils } from "react-icons/fa";
 
@@ -9,6 +10,8 @@ export const metadata = {
 const ManageRecipesPage = async () => {
   const recipes = await getAllRecipe();
   const featuredRecipes = await getFeaturedRecipes();
+console.log(recipes)
+  const { data, totalPage, page  } = recipes;
 
   const featuredIds =
     featuredRecipes?.map((item) => String(item.recipeId || item._id || item)) ||
@@ -40,33 +43,37 @@ const ManageRecipesPage = async () => {
             Total Recipes
           </p>
           <h2 className="text-xl font-bold text-orange-500 sm:text-2xl">
-            {recipes?.length || 0}
+            {data?.length || 0}
           </h2>
         </div>
       </div>
 
       {/* Cards Grid */}
-      {!recipes?.length ? (
+      {!data?.length ? (
         <div className="rounded-2xl border border-dashed border-gray-300 py-16 text-center text-gray-500 dark:border-gray-800 dark:text-gray-400">
           No recipes found.
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {recipes.map((recipe, index) => {
-            const isFeatured = formattedFeaturedIds.includes(
-              String(recipe._id),
-            );
+        <>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {data.map((recipe, index) => {
+              const isFeatured = formattedFeaturedIds.includes(
+                String(recipe._id),
+              );
 
-            return (
-              <RecipeCard
-                key={recipe._id}
-                recipe={recipe}
-                index={index}
-                isFeatured={isFeatured}
-              />
-            );
-          })}
-        </div>
+              return (
+                <RecipeCard
+                  key={recipe._id}
+                  recipe={recipe}
+                  index={index}
+                  isFeatured={isFeatured}
+                />
+              );
+            })}
+          </div>
+
+          <PaginationBasic totalPages = {totalPage} currentPage = {page} />
+        </>
       )}
     </section>
   );

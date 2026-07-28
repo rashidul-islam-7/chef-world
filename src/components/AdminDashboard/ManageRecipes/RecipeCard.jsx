@@ -21,8 +21,8 @@ export default function RecipeCard({ recipe, index, isFeatured }) {
         <div className="flex items-center gap-3">
           {recipe?.recipeImage ? (
             <Image
-              src={recipe.recipeImage}
-              alt={recipe.recipeName || "Recipe"}
+              src={recipe?.recipeImage || "image"}
+              alt={recipe?.recipeName || "Recipe"}
               width={64}
               height={64}
               className="h-16 w-16 shrink-0 rounded-xl border border-gray-100 object-cover shadow-sm dark:border-gray-800"
