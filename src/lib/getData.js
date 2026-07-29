@@ -6,7 +6,7 @@ export const getAllRecipe = async ({ searchParams } = {}) => {
   try {
     const searchQuery = (await searchParams) || {};
     const page = searchQuery.page || 1;
-    const limit = searchQuery.limit || 10;
+    const limit = searchQuery.limit || 12;
 
     const res = await fetch(`${API_URL}/recipes?page=${page}&limit=${limit}`, {
       next: {
@@ -147,7 +147,7 @@ export async function getAllTransactions({ searchParams } = {}) {
   try {
     const searchQuery = await searchParams;
     const page = searchQuery.page || 1;
-    const limit = searchQuery.limit || 10;
+    const limit = searchQuery.limit || 9;
 
     const res = await fetch(
       `${API_URL}/admin/transactions?page=${page}&limit=${limit}`,

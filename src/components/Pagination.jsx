@@ -7,14 +7,12 @@ export function PaginationBasic({ totalPages = 1, currentPage = 1 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // পেজ চেঞ্জ হলে URL আপডেট করার ফাংশন
   const handlePageChange = (newPage) => {
     if (newPage < 1 || newPage > totalPages) return;
 
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", newPage.toString());
 
-    // নতুন URL-এ নিয়ে যাওয়া
     router.push(`?${params.toString()}`);
   };
 
