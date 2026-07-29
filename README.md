@@ -78,9 +78,9 @@ A modern full-stack recipe sharing platform where users can create, discover, pu
 
 ## 👨‍💼 Admin Credentials
 
-> **Email:** 
+> **Email:** rashed@gmail.com
 
-> **Password:** 
+> **Password:** Rashed@134
 
 ---
 
