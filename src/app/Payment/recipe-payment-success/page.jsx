@@ -33,7 +33,7 @@ export default async function PaymentSuccess({ searchParams }) {
   } catch (error) {
     console.error("Stripe retrieve error:", error);
     return (
-      <section className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <section className="min-h-screen dark:border-gray-900 dark:text-white bg-gray-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-red-100">
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-red-600 text-2xl font-bold">
             !
@@ -41,7 +41,7 @@ export default async function PaymentSuccess({ searchParams }) {
           <h2 className="text-xl font-bold text-gray-900 mb-2">
             Verification Failed
           </h2>
-          <p className="text-gray-500 mb-4">
+          <p className="text-gray-500 mb-4 dark:text-gray-300">
             We couldn't verify this payment session. Please check your stripe
             dashboard.
           </p>
@@ -74,7 +74,7 @@ export default async function PaymentSuccess({ searchParams }) {
     }
 
     return (
-      <section className="min-h-screen flex items-center justify-center p-4 ">
+      <section className="min-h-screen flex items-center justify-center p-4 dark:border-gray-900 dark:text-white">
         <div className="text-center max-w-sm w-full">
           {/* Success Icon */}
           <div className="flex justify-center items-center text-5xl text-green-500 mb-4">
@@ -85,14 +85,14 @@ export default async function PaymentSuccess({ searchParams }) {
           <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
             Payment Success!
           </h2>
-          <p className="text-gray-500 mb-4">
+          <p className="text-gray-500 mb-4 dark:text-gray-300">
             Thank you for purchasing <strong>{metadata?.recipeName}</strong>.
             The recipe is now unlocked!
           </p>
 
           {/* Transaction ID UI*/}
           {transactionId && (
-            <div className="bg-gray-100 p-3 rounded-lg mb-6 text-xs text-gray-600 font-mono break-all text-center">
+            <div className="bg-gray-100 p-3 rounded-lg mb-6 text-xs dark:text-gray-200 text-gray-600 font-mono break-all text-center">
               <span className="font-semibold block text-gray-500 mb-1">
                 TRANSACTION ID
               </span>

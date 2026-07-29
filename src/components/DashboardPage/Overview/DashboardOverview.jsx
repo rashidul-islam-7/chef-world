@@ -60,7 +60,7 @@ export default function DashboardOverview() {
       title: "Membership",
       value: user_isPremium ? "Premium" : "Free",
       icon: FaCrown,
-      iconBg: "bg-yellow-100 dark:bg-yellow-950/50 text-yellow-600",
+      iconBg: "bg-yellow-100 text-yellow-600 dark:bg-white",
     },
   ];
 

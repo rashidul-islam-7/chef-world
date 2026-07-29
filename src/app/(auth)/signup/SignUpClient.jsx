@@ -92,7 +92,7 @@ const SignUpClient = () => {
             Welcome to Chef<span className="text-orange-500">World</span>
           </h1>
 
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
             Create your account to discover, share, and save delicious recipes.
           </p>
         </div>
@@ -102,13 +102,13 @@ const SignUpClient = () => {
 
         {/* Divider */}
         <div className="my-6 flex items-center">
-          <div className="h-px flex-1 bg-gray-300 dark:bg-gray-700"></div>
+          <div className="h-px flex-1 bg-gray-300 dark:bg-gray-700 dark:text-gray-200"></div>
 
-          <span className="mx-4 text-xs font-medium uppercase text-gray-400">
+          <span className="mx-4 text-xs font-medium uppercase text-gray-400 dark:text-gray-200">
             or
           </span>
 
-          <div className="h-px flex-1 bg-gray-300 dark:bg-gray-700"></div>
+          <div className="h-px flex-1 bg-gray-300 dark:bg-gray-700 dark:text-gray-200"></div>
         </div>
 
         {/* Error Message */}
@@ -130,7 +130,7 @@ const SignUpClient = () => {
           <TextField isRequired name="name" type="text">
             <Label className="dark:text-gray-300">Username</Label>
             <Input
-              className="w-full rounded-xl dark:bg-gray-700 py-0 shadow border-none"
+              className="w-full rounded-xl dark:text-gray-200 dark:bg-gray-700 py-0 shadow border-none"
               aria-label="Name"
               placeholder="John Doe"
             />
@@ -139,7 +139,7 @@ const SignUpClient = () => {
           <TextField isRequired name="email" type="email">
             <Label className="dark:text-gray-300">Email</Label>
             <Input
-              className="w-full rounded-xl dark:bg-gray-700 py-0 shadow border-none"
+              className="w-full rounded-xl dark:text-gray-200 dark:bg-gray-700 py-0 shadow border-none"
               placeholder="john@example.com"
             />
             <FieldError />
@@ -153,7 +153,7 @@ const SignUpClient = () => {
 
             <Input
               id="image"
-              className="w-full rounded-xl dark:bg-gray-700 shadow border-none"
+              className="w-full rounded-xl dark:text-gray-200 dark:bg-gray-700 py-0 shadow border-none"
               placeholder="https://example.com/image.jpg"
             />
 
@@ -179,7 +179,7 @@ const SignUpClient = () => {
             }}
           >
             <Label className="dark:text-gray-300">Password</Label>
-            <InputGroup className="w-full rounded-xl dark:bg-gray-700 py-0 shadow border-none">
+            <InputGroup className="w-full rounded-xl dark:text-gray-200 dark:bg-gray-700 py-0.5 shadow border-none">
               <InputGroup.Input
                 name="password"
                 type={isVisible ? "text" : "password"}
@@ -217,7 +217,7 @@ const SignUpClient = () => {
 
         {/* Footer */}
         <div className="mt-6 border-t border-white/10 pt-6 text-center">
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-400 dark:text-gray-200">
             Already have an account?{" "}
             <Link
               href="/signin"

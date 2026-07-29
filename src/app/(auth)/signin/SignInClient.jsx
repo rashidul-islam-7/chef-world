@@ -17,6 +17,7 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 import GoogleSignUpButton from "@/components/GoogleSignUpBtn";
 import { signIn } from "@/lib/auth-client";
+import { Loader2 } from "lucide-react";
 
 const SignInClient = () => {
   const router = useRouter();
@@ -148,7 +149,7 @@ const SignInClient = () => {
           >
             <Label className="dark:text-gray-300">Password</Label>
 
-            <InputGroup className="w-full rounded-xl dark:bg-gray-700 ">
+            <InputGroup className="w-full rounded-xl dark:bg-gray-700 py-0.5">
               <InputGroup.Input
                 name="password"
                 type={isVisible ? "text" : "password"}
@@ -182,10 +183,17 @@ const SignInClient = () => {
 
           <Button
             type="submit"
-            isLoading={isLoading}
-            className="cursor-pointer mt-2 h-10 w-full rounded-full text-base bg-blue-600 font-medium text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/25"
+            disabled={isLoading} // Loading obosthay button click block korar jonno
+            className="cursor-pointer mt-2 h-10 w-full rounded-full text-base bg-blue-600 font-medium text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2"
           >
-            {isLoading ? "Signing In..." : "Sign In"}
+            {isLoading ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin" />
+                <span>Signing In...</span>
+              </>
+            ) : (
+              "Sign In"
+            )}
           </Button>
         </Form>
 

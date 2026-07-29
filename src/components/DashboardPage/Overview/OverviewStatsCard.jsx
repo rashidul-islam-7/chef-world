@@ -5,7 +5,7 @@ const OverviewStatsCard = ({ title, value, icon: Icon, iconBg }) => {
     <div className="group rounded-2xl border border-gray-200 bg-white dark:bg-gray-500/50 p-4 shadow-sm ">
       <div className="flex items-center gap-3">
         <div
-          className={`flex h-14 w-14 items-center justify-center rounded-sm ${iconBg} dark:bg-white`}
+          className={`flex h-14 w-14 items-center justify-center rounded-sm dark:bg-white ${iconBg} `}
         >
           <Icon className={`text-2xl text-black`} />
         </div>

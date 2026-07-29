@@ -4,9 +4,9 @@ A modern full-stack recipe sharing platform where users can create, discover, pu
 
 ## 🌐 Live Links
 
-- **Live Site:** 
+- **Live link:** https://chef-world.vercel.app
 - **Client Repository:** https://github.com/rashidul-islam-7/chef-world
-- **Server Repository:** https://github.com/rashidul-islam-7/chef-wrold-server
+- **Server Repository:** https://github.com/rashidul-islam-7/chef-world-server
 
 ---
 
@@ -78,9 +78,9 @@ A modern full-stack recipe sharing platform where users can create, discover, pu
 
 ## 👨‍💼 Admin Credentials
 
-> **Email:** rashed@gmail.com
+> **Email:** 
 
-> **Password:** Rashed@134
+> **Password:** 
 
 ---
 
