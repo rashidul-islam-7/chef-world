@@ -23,27 +23,27 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 //   }
 // };
 
-// // Update Recipe
-// export const updateRecipe = async (updateRecipeData, id) => {
-//   try {
-//     const res = await fetch(`${API_URL}/update-recipe/${id}`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(updateRecipeData),
-//     });
+// Update Recipe
+export const updateRecipe = async (updateRecipeData, id) => {
+  try {
+    const res = await fetch(`${API_URL}/update-recipe/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateRecipeData),
+    });
 
-//     if (!res.ok) {
-//       throw new Error("Failed to update recipe");
-//     }
+    if (!res.ok) {
+      throw new Error("Failed to update recipe");
+    }
 
-//     return await res.json();
-//   } catch (error) {
-//     console.error("Error:", error);
-//     throw error;
-//   }
-// };
+    return await res.json();
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};
 
 export const postSubscription = async (data) => {
   const res = await fetch(`${API_URL}/premium-user-subscription`, {
@@ -89,23 +89,6 @@ export const postRecipe = async (recipeData) => {
   const data = await res.json();
   if (!res.ok) {
     throw new Error(data.message || "Failed to post recipe");
-  }
-  return data;
-};
-
-// Update Recipe
-export const updateRecipe = async (recipeData, recipeId) => {
-  const res = await fetch(`${API_URL}/recipes/${recipeId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(recipeData),
-  });
-
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.message || "Failed to update recipe");
   }
   return data;
 };

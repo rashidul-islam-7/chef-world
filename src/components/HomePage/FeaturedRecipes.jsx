@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 import FeaturedRecipesCard from "./FeaturedRecipesCard";
@@ -34,12 +33,12 @@ const FeaturedRecipes = async () => {
 
         {/* Cards */}
 
-        <FeaturedRecipesCard featuredRecipesData={recipes} topRecipes={[]} />
+        <FeaturedRecipesCard featuredRecipesData={recipes} />
 
         {/* Button */}
         <div className="mt-14 text-center">
           <Link
-            href="/recipes"
+            href="/AllRecipe"
             className="inline-flex rounded-xl border border-orange-500 px-8 py-3 font-medium text-orange-500 transition-all duration-300 hover:bg-orange-500 hover:text-white"
           >
             View All Recipes

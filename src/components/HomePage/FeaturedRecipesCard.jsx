@@ -27,8 +27,8 @@ const FeaturedRecipesCard = ({ featuredRecipesData = [], topRecipes = [] }) => {
           {/* Image */}
           <div className="relative overflow-hidden">
             <Image
-              src={recipe.recipeImage}
-              alt={recipe.recipeName}
+              src={recipe?.recipeImage}
+              alt={recipe?.recipeName}
               width={500}
               height={250}
               className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -42,27 +42,27 @@ const FeaturedRecipesCard = ({ featuredRecipesData = [], topRecipes = [] }) => {
           {/* Content */}
           <div className="p-4">
             <h3 className="text-lg font-bold line-clamp-1 ">
-              {recipe.recipeName}
+              {recipe?.recipeName}
             </h3>
 
             <div className="mt-2 flex flex-wrap justify-between items-center text-sm text-default-500">
               <div className="flex items-center gap-1">
                 <BiDish className="text-orange-500" />
-                {recipe.category}
+                {recipe?.category}
               </div>
 
               <div className="flex items-center line-clamp-1 gap-1">
-                🍽️ {recipe.cuisineType}
+                🍽️ {recipe?.cuisineType}
               </div>
 
               <div className="flex items-center gap-1">
                 <MdOutlineAccessTime className="text-orange-500" />
-                {recipe.preparationTime} min
+                {recipe?.preparationTime} min
               </div>
             </div>
 
             <Link
-              href={`/recipes/${recipe._id}`}
+              href={`/AllRecipe/${recipe?._id}`}
               className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-orange-500 px-5 py-2 font-medium text-white transition-all duration-300 hover:bg-orange-600"
             >
               View Details
@@ -75,3 +75,107 @@ const FeaturedRecipesCard = ({ featuredRecipesData = [], topRecipes = [] }) => {
 };
 
 export default FeaturedRecipesCard;
+
+// "use client";
+
+// import Image from "next/image";
+// import Link from "next/link";
+// import { motion } from "framer-motion";
+// import { MdOutlineAccessTime } from "react-icons/md";
+// import { BiDish } from "react-icons/bi";
+
+// const FeaturedRecipesCard = ({ featuredRecipesData = [], topRecipes = [] }) => {
+//   const recipes =
+//     featuredRecipesData.length > 0 ? featuredRecipesData : topRecipes;
+
+//   const getRecipeId = (recipe) => {
+//     if (!recipe) return "";
+//     if (recipe._id) {
+//       return typeof recipe._id === "object"
+//         ? recipe._id.$oid || recipe._id.toString()
+//         : String(recipe._id);
+//     }
+//     return recipe.recipeId ? String(recipe.recipeId) : "";
+//   };
+
+//   return (
+//     <div className="flex flex-wrap justify-center gap-3 items-center">
+//       {recipes.map((recipe, index) => {
+//         // Safe values extract করা
+//         const id = getRecipeId(recipe);
+
+//         {
+//           console.log(id);
+//         }
+
+//         const title = recipe?.recipeName || recipe?.title || "Untitled Recipe";
+//         const image =
+//           recipe?.recipeImage || recipe?.image || "/placeholder-food.jpg";
+//         const category = recipe?.category || "General";
+//         const cuisine = recipe?.cuisineType || recipe?.cuisine || "Various";
+//         const prepTime = recipe?.preparationTime || 0;
+
+//         return (
+//           <motion.div
+//             key={id || index}
+//             initial={{ opacity: 0, y: 40 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{
+//               duration: 0.5,
+//               delay: index * 0.1,
+//             }}
+//             viewport={{ once: true }}
+//             className="w-[270px] border border-gray-400 group overflow-hidden rounded-2xl bg-content1 shadow-sm hover:shadow-xl transition-all duration-300"
+//           >
+//             {/* Image */}
+//             <div className="relative overflow-hidden">
+//               <Image
+//                 src={image}
+//                 alt={title}
+//                 width={500}
+//                 height={250}
+//                 className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+//               />
+
+//               <span className="absolute top-4 left-4 rounded-full bg-orange-500 px-3 py-1 text-xs font-medium text-white">
+//                 {featuredRecipesData.length > 0 ? "Featured" : "Top Rated"}
+//               </span>
+//             </div>
+
+//             {/* Content */}
+//             <div className="p-4">
+//               <h3 className="text-lg font-bold line-clamp-1">{title}</h3>
+
+//               <div className="mt-2 flex flex-wrap justify-between items-center text-sm text-default-500">
+//                 <div className="flex items-center gap-1">
+//                   <BiDish className="text-orange-500" />
+//                   {category}
+//                 </div>
+
+//                 <div className="flex items-center line-clamp-1 gap-1">
+//                   🍽️ {cuisine}
+//                 </div>
+
+//                 <div className="flex items-center gap-1">
+//                   <MdOutlineAccessTime className="text-orange-500" />
+//                   {prepTime} min
+//                 </div>
+//               </div>
+
+//               <Link
+//                 href={id ? `/AllRecipe/${id}` : "#"}
+//                 className={`mt-4 inline-flex w-full items-center justify-center rounded-xl bg-orange-500 px-5 py-2 font-medium text-white transition-all duration-300 hover:bg-orange-600 ${
+//                   !id ? "pointer-events-none opacity-50" : ""
+//                 }`}
+//               >
+//                 View Details
+//               </Link>
+//             </div>
+//           </motion.div>
+//         );
+//       })}
+//     </div>
+//   );
+// };
+
+// export default FeaturedRecipesCard;

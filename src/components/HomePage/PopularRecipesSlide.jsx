@@ -79,7 +79,7 @@ const PopularRecipesSlide = ({ recipes }) => {
                     </span>
                   </div>
 
-                  <Link href={`/recipes/${recipe._id}`}>
+                  <Link href={`/AllRecipe/${recipe._id}`}>
                     <button className="cursor-pointer text-orange-500 font-medium hover:text-orange-700 transition">
                       View →
                     </button>

@@ -5,25 +5,45 @@ import { toast } from "react-toastify";
 import { FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { toggleFeaturedRecipe } from "@/lib/action";
+import { authClient } from "@/lib/auth-client";
 
 export default function FeatureRecipeButton({
   recipeId,
   initialFeatured = false,
-  token,
 }) {
   const router = useRouter();
 
   const [isFeatured, setIsFeatured] = useState(initialFeatured);
   const [loading, setLoading] = useState(false);
 
+  const { data: session, isPending } = authClient.useSession();
+  const userRole = session?.user?.role;
+
   useEffect(() => {
     setIsFeatured(initialFeatured);
   }, [initialFeatured]);
 
+  useEffect(() => {
+    if (!isPending) {
+      if (!session || userRole !== "admin") {
+        toast.error("You are not authorized! Admin access required.", {
+          toastId: "unauthorized-admin-toast",
+        });
+
+        router.push("/");
+      }
+    }
+  }, [isPending, session, userRole, router]);
+
   const handleFeature = async () => {
+    if (userRole !== "admin") {
+      toast.error("Only admins can perform this action!");
+      return;
+    }
+
     try {
       setLoading(true);
-      const result = await toggleFeaturedRecipe(recipeId, token);
+      const result = await toggleFeaturedRecipe(recipeId);
 
       if (result?.success) {
         setIsFeatured(result.featured);
@@ -39,6 +59,10 @@ export default function FeatureRecipeButton({
       setLoading(false);
     }
   };
+
+  if (isPending || userRole !== "admin") {
+    return null;
+  }
 
   return (
     <button
